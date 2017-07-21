@@ -7,6 +7,7 @@
     "angular": "^1.6.5",
     "angular-leaflet-directive": "^0.10.0",
     "angular-simple-logger": "^0.1.7",
+    "angular-slide-menu": "^0.5.0",
     "leaflet": "^1.1.0",
     "ui-leaflet": "^1.0.3",
     "xml2js": "^0.4.17"

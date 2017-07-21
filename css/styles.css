@@ -1,10 +1,8 @@
-html {
-  font-family: sans-serif;
-}
-
 body, html {
   height: 100%;
-  background-color: grey;
+  background-color: #6a6d72;
+  font-family: 'Merriweather', serif;
+  color: black;
 }
 
 .worldmap {
@@ -13,7 +11,7 @@ body, html {
 }
 
 /*classe para legenda no html legend="legend"*/
-.legend {
+/*.legend {
   padding: 6px 8px;
   font: 14px/16px Arial, Helvetica, sans-serif;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -23,57 +21,72 @@ body, html {
   line-height: 18px;
   color: #555;
   width: 100px;
-}
+}*/
 
-.legend i {
+/*.legend i {
   clear: both;
   width: 16px;
   height: 16px;
   float: left;
   opacity: 0.7;
   margin-right: 8px;
-}
+}*/
 
-div.worldmap.box {
+/*div.worldmap.box {
   position: absolute;
   top: 1em;
   right: 1em;
   z-index: 100;
   padding: 1em;
   text-align: center;
-}
+}*/
 
 div.worldmap.country {
-  font-size: 2em;
+  opacity: 1;
+  font-size: 12px;
   font-weight: bold;
   position: absolute;
-  bottom: 1em;
-  left: 1em;
+  bottom: 20px;
+  right: 4px;
   z-index: 100;
   padding: .2em .5em;
   line-height: 1.1em;
   text-align: center;
 }
 
+div.worldmap.country.f32 {
+  opacity: 1;
+
+}
+
 .angular-leaflet-map {
   height: 100%;
-  background: #1A2980 ;
-  background: -webkit-linear-gradient(to right, #26D0CE , #1A2980 );
-  background: linear-gradient(to right, #26D0CE , #1A2980 );
+  background: #233a60 ;
+  /*background: -webkit-linear-gradient(to right, #26D0CE , #1A2980 );
+  background: linear-gradient(to right, #26D0CE , #1A2980 );*/
   border: none;
 
 }
 
 .coluna-esquerda{
-  background-color: grey;
-  width: 250px;
+  background-color: #6a6d72;
+  /*width: 250px;*/
   padding: 0px;
+
+
+}
+
+.coluna-esquerda h1 {
+  text-align: center;
+  color: #eaedf2;
 }
 
 .buttons {
   width: 100%;
-  background-color: grey;
-  border-color: grey;
-  border-top: 2px solid #aaabaf;
+  background-color: #6a6d72;
+  border: none;
+  border-top: 1px solid #eaedf2;
+  color: #eaedf2;
+  border-radius: 0px;
 
 }
