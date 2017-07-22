@@ -56,9 +56,24 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     },
   });
 
+  function openNav() {
+      document.getElementById("mySidenav").style.width = "100%";
+      document.getElementById("main").style.marginLeft = "100%";
+  }
+
+  // $scope.closeNav = function () {
+  //     document.getElementById("mySidenav").style.width = "0";
+  //     document.getElementById("main").style.marginLeft= "0";
+  // }
+
   function countryClick(country, event) {
     country = country.feature;
-    console.log(country.id);
+    console.log(country);
+
+    if (country.id) {
+      openNav();
+    }
+
   }
 
   // Get a country paint color from the continents array of colors
@@ -143,26 +158,7 @@ app.controller('homeCtrl', function($scope) {
       {id: 4, title: 'Logout'}
     ];
 
-    // $scope.submenu = false;
-    // $scope.submenuAtivo = [];
-
     $scope.ativarSubmenu = function(item){
       $scope.submenuAtivo = item.submenu;
     }
-
-    // $scope.SubMenu = function (item) {
-    //   if(item.title == 'home' || item.title == 'logout'){
-    //     // nada acontece
-    //   }
-    //   else{
-    //     $scope.submenus = [
-    //       {id: 1, title: 'login'},
-    //       {id: 2, title: 'personalizar'}
-    //     ];
-    //     $scope.submenuNome = item.title;
-    //     console.log($scope.submenuNome);
-    //     $scope.item = !$scope.item;
-    //   }
-    // };
-
-  })
+  });

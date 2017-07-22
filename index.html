@@ -32,8 +32,14 @@
 
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <div class="news">
+      <div class="col-sm-2 news">
         <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
+      </div>
+      <div class="col-sm-3 feed">
+        <h1>Feed de noticias desse lado</h1>
+      </div>
+      <div class="col-sm-5 feed">
+        <h1>Notícias aqui</h1>
       </div>
     </div>
   </div>
@@ -41,7 +47,7 @@
 
   <div id="main" ng-controller="MixedGeoJSONEventsWithIDController">
     <!-- O mapa é carregado dentro do leaflet abaixo -->
-    <leaflet id="myMap" onclick="openNav()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
+    <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
     <div class="worldmap country f32">
       <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
