@@ -12,28 +12,28 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     countryClick(leafletPayload.leafletObject, leafletPayload.leafletEvent);
   });
 
-  var continentProperties= {
-    "009": {
-      name: 'Oceania',
-      colors: [ '#CC0066', '#993366', '#990066', '#CC3399', '#CC6699' ]
-    },
-    "019": {
-      name: 'America',
-      colors: [ '#006699', '#336666', '#003366', '#3399CC', '#6699CC' ]
-    },
-    "150": {
-      name: 'Europe',
-      colors: [ '#FF0000', '#CC3333', '#990000', '#FF3333', '#FF6666' ]
-    },
-    "002": {
-      name: 'Africa',
-      colors: [ '#00CC00', '#339933', '#009900', '#33FF33', '#66FF66' ]
-    },
-    "142": {
-      name: 'Asia',
-      colors: [ '#FFCC00', '#CC9933', '#999900', '#FFCC33', '#FFCC66' ]
-    },
-  };
+  // var continentProperties= {
+  //   "009": {
+  //     name: 'Oceania',
+  //     colors: [ '#CC0066', '#993366', '#990066', '#CC3399', '#CC6699' ]
+  //   },
+  //   "019": {
+  //     name: 'America',
+  //     colors: [ '#006699', '#336666', '#003366', '#3399CC', '#6699CC' ]
+  //   },
+  //   "150": {
+  //     name: 'Europe',
+  //     colors: [ '#FF0000', '#CC3333', '#990000', '#FF3333', '#FF6666' ]
+  //   },
+  //   "002": {
+  //     name: 'Africa',
+  //     colors: [ '#00CC00', '#339933', '#009900', '#33FF33', '#66FF66' ]
+  //   },
+  //   "142": {
+  //     name: 'Asia',
+  //     colors: [ '#FFCC00', '#CC9933', '#999900', '#FFCC33', '#FFCC66' ]
+  //   },
+  // };
 
   //Controlando posição inicial central e zoom inicial do MAPA
   angular.extend($scope, {
@@ -50,10 +50,10 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
     },
     // controlando o que aparece na legenda do MAPA
-    legend: {
-      colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', 'black' ],
-      labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
-    },
+    // legend: {
+    //   colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', 'black' ],
+    //   labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
+    // },
   });
 
   function openNav() {
@@ -61,15 +61,10 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
       document.getElementById("main").style.marginLeft = "100%";
   }
 
-  // $scope.closeNav = function () {
-  //     document.getElementById("mySidenav").style.width = "0";
-  //     document.getElementById("main").style.marginLeft= "0";
-  // }
-
+  //função para abrir o side menu sooomente clicando no país
   function countryClick(country, event) {
     country = country.feature;
-    console.log(country);
-
+    // console.log(country);
     if (country.id) {
       openNav();
     }
@@ -79,7 +74,7 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
   // Get a country paint color from the continents array of colors
   function getColor(country) {
     if (!country || !country["region-code"]) {
-      //definindo cor do mapa
+      //definindo cor dos continentes
       return "black";
     }
 
@@ -140,25 +135,76 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
 // Controller do index/Home
 app.controller('homeCtrl', function($scope) {
-  $scope.index = [
-    {id: 1, title: 'Home'},
-    {id: 2,
-      title: 'Login',
-      submenu:[
-        'xablau',
-        'xpto'
-      ]},
-      {id: 3,
-        title: 'Personalizar',
-        submenu:[
-          'bla bla bla',
-          'ble ble ble'
-        ]
-      },
-      {id: 4, title: 'Logout'}
-    ];
 
-    $scope.ativarSubmenu = function(item){
-      $scope.submenuAtivo = item.submenu;
-    }
+    $scope.paises = [{
+      pais: 'Brasil'
+    },
+    {
+      pais: 'Canadá'
+    },
+    {
+      pais: 'França'
+    },
+    {
+      pais: 'Rússia'
+    },
+    {
+      pais: 'Estados Unidos'
+    },
+    {
+      pais: 'Espanha'
+    },
+    {
+      pais: 'Argentina'
+    },
+    {
+      pais: 'Austrália'
+    }];
+
+    $scope.jornais = [{
+      jornal: 'G1'
+    },
+    {
+      jornal: 'Folha de São Paulo'
+    },
+    {
+      jornal: 'Estadão'
+    },
+    {
+      jornal: 'The New York Times'
+    },
+    {
+      jornal: 'Daily News'
+    },
+    {
+      jornal: 'La vanguardia'
+    },
+    {
+      jornal: 'El Pais'
+    },
+    {
+      jornal: 'El Mundo'
+    }];
+
+  // $scope.index = [
+  //   {id: 1, title: 'Home'},
+  //   {id: 2,
+  //     title: 'Login',
+  //     submenu:[
+  //       'xablau',
+  //       'xpto'
+  //     ]},
+  //     {id: 3,
+  //       title: 'Personalizar',
+  //       submenu:[
+  //         'bla bla bla',
+  //         'ble ble ble'
+  //       ]
+  //     },
+  //     {id: 4, title: 'Logout'}
+  //   ];
+
+    // $scope.ativarSubmenu = function(item){
+    //   $scope.submenuAtivo = item.submenu;
+    // }
   });

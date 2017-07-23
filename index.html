@@ -18,45 +18,88 @@
   <script src="./js/sidemenu.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
-
 </head>
 
 <body>
+  <!-- div menu do lado esquerdo -->
   <div class="col-sm-2 coluna-esquerda" ng-controller="homeCtrl">
     <h1>NewsMap</h1>
     <div class="btns">
-      <button ng-repeat="item in index" class="btn btn-default buttons"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
+      <!-- <button ng-repeat="item in index" class="btn btn-default buttons"  ng-click="ativarSubmenu(item)">{{item.title}}</button> -->
+      <button class="btn btn-default buttons">Home</button>
+      <button class="btn btn-default buttons"  ng-click="showme = !showme">Login</button>
+      <button class="btn btn-default buttons" ng-click="showthis = !showthis">Personalizar</button>
+      <button class="btn btn-default buttons">Logout</button>
     </div>
-    <div ng-repeat="item in submenuAtivo">{{item}}</div>
-    <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span> -->
-
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <div class="col-sm-2 news">
-        <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
-      </div>
-      <div class="col-sm-3 feed">
-        <h1>Feed de noticias desse lado</h1>
-      </div>
-      <div class="col-sm-5 feed">
-        <h1>Notícias aqui</h1>
-      </div>
-    </div>
+    <!-- <div ng-repeat="item in submenuAtivo">{{item}}
+  </div> -->
+  <div class="divLogin" ng-show="showme">
+    <label>
+      <p>Entre com seu nome de usuário e senha</p>
+      <input type="text" placeholder="Username">
+    </label>
+    <label>
+      <input type="password" placeholder="Password">
+    </label>
+    <button type="button" class="btn btn-default buttons">Entrar</button>
+    <button type="button" class="btn btn-default buttons">Cadastrar-se</button>
+    <button type="button" class="btn btn-primary fb">Entre com facebook</button>
   </div>
 
-
-  <div id="main" ng-controller="MixedGeoJSONEventsWithIDController">
-    <!-- O mapa é carregado dentro do leaflet abaixo -->
-    <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
-    <!-- espaço que carrega os nomes dos países quando mousehover -->
-    <div class="worldmap country f32">
-      <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
-      {{ selectedCountry.properties.name || 'No country'}}
-    </div>
-    <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
-    <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
-    <h1>World map flags example</h1> -->
+  <div class="divFav" ng-show="showthis">
+    <form>
+      <div class="input">
+        <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
+        <span>Filtrar por país</span>
+      </div>
+      <select ng-show="showPaises" ng-model="paisSelecionado" ng-options="item as item.pais for item in paises">
+        <option value="">Nenhum</option>
+      </select>
+      <span>{{paisSelecionado.pais}}</span>
+    </form>
+    <form>
+      <div class="input">
+        <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais">
+        <span>Filtrar por jornal</span>
+      </div>
+      <select ng-show="showJornais" ng-model="jornalSelecionado" ng-options="item as item.jornal for item in jornais">
+        <option value="">Nenhum</option>
+      </select>
+      <span>{{jornalSelecionado.jornal}}</span>
+    </form>
   </div>
+
+</div>
+
+
+<!-- div da sidemenu ativada quando click no país -->
+<div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="col-sm-2 news">
+    <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
+  </div>
+  <div class="col-sm-3 feed">
+    <h1>Feed de noticias desse lado</h1>
+  </div>
+  <div class="col-sm-5 feed">
+    <h1>Notícias aqui</h1>
+  </div>
+</div>
+</div>
+
+<!-- div do mapa -->
+<div id="main" ng-controller="MixedGeoJSONEventsWithIDController">
+  <!-- O mapa é carregado dentro do leaflet abaixo -->
+  <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
+  <!-- espaço que carrega os nomes dos países quando mousehover -->
+  <div class="worldmap country f32">
+    <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
+    {{ selectedCountry.properties.name || 'No country'}}
+  </div>
+  <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
+  <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
+  <h1>World map flags example</h1> -->
+</div>
 </body>
 
 </html>
