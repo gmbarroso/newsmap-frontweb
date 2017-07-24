@@ -136,55 +136,7 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 // Controller do index/Home
 app.controller('homeCtrl', function($scope) {
 
-    $scope.paises = [{
-      pais: 'Brasil'
-    },
-    {
-      pais: 'Canadá'
-    },
-    {
-      pais: 'França'
-    },
-    {
-      pais: 'Rússia'
-    },
-    {
-      pais: 'Estados Unidos'
-    },
-    {
-      pais: 'Espanha'
-    },
-    {
-      pais: 'Argentina'
-    },
-    {
-      pais: 'Austrália'
-    }];
 
-    $scope.jornais = [{
-      jornal: 'G1'
-    },
-    {
-      jornal: 'Folha de São Paulo'
-    },
-    {
-      jornal: 'Estadão'
-    },
-    {
-      jornal: 'The New York Times'
-    },
-    {
-      jornal: 'Daily News'
-    },
-    {
-      jornal: 'La vanguardia'
-    },
-    {
-      jornal: 'El Pais'
-    },
-    {
-      jornal: 'El Mundo'
-    }];
 
   // $scope.index = [
   //   {id: 1, title: 'Home'},
@@ -207,4 +159,6 @@ app.controller('homeCtrl', function($scope) {
     // $scope.ativarSubmenu = function(item){
     //   $scope.submenuAtivo = item.submenu;
     // }
+
+
   });
