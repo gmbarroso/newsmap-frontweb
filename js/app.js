@@ -56,9 +56,9 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     // },
   });
 
-  function openNav() {
-      document.getElementById("mySidenav").style.width = "100%";
-      document.getElementById("main").style.marginLeft = "100%";
+  function openNavMapa() {
+    document.getElementById("sidenavMapa").style.width = "100%";
+    document.getElementById("pushMapa").style.marginLeft = "100%";
   }
 
   //função para abrir o side menu sooomente clicando no país
@@ -66,7 +66,7 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     country = country.feature;
     // console.log(country);
     if (country.id) {
-      openNav();
+      openNavMapa();
     }
 
   }
@@ -83,7 +83,7 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     return colors[index];
   }
 
-//estilo dos limites entre países
+  //estilo dos limites entre países
   function style(feature) {
     return {
       fillColor: getColor($scope.countries[feature.id]),
@@ -156,9 +156,9 @@ app.controller('homeCtrl', function($scope) {
   //     {id: 4, title: 'Logout'}
   //   ];
 
-    // $scope.ativarSubmenu = function(item){
-    //   $scope.submenuAtivo = item.submenu;
-    // }
+  // $scope.ativarSubmenu = function(item){
+  //   $scope.submenuAtivo = item.submenu;
+  // }
 
 
-  });
+});

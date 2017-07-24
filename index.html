@@ -13,9 +13,9 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/sidemenu.css">
+  <link rel="stylesheet" href="./css/sideMenuMapa.css">
   <script src="./js/app.js"></script>
-  <script src="./js/sidemenu.js"></script>
+  <script src="./js/sideMenuMapa.js"></script>
 
   <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
@@ -36,15 +36,19 @@
     <!-- {{item}} -->
     <div>
       <div class="divLogin" ng-show="showLgn">
-        <label>
-          <p>Entre com seu nome de usuário e senha</p>
-          <input type="text" placeholder="Username">
-        </label>
-        <label>
-          <input type="password" placeholder="Password">
-        </label>
-        <button type="button" class="btn btn-default buttons" ng-click="hideLgnbtn">Entrar</button>
-        <button type="button" class="btn btn-default buttons">Cadastrar-se</button>
+        <form class="col-sm-12">
+          <div class="form-group">
+            <label for="exampleInputEmail1"></label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"></label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          </div>
+        </form>
+
+        <button type="button" class="btn btn-default" ng-click="hideLgnbtn">Entrar</button>
+        <button id="cadastro" type="button" class="btn btn-default buttons">Cadastrar-se</button>
         <button type="button" class="btn btn-primary fb">Entre com facebook</button>
       </div>
 
@@ -73,9 +77,40 @@
     </div>
   </div>
 
+  <!-- <div id="sidenavCad" class="sidenavcad">
+    <a href="javascript:void(0)" class="closebtncad" onclick="closeNavCad()">&times;</a>
+    <h1>NewsMap</h1>
+    <h2></h2>
+    <h4>Registro de usuário</h4>
+
+    <form>
+      <div class="col-sm-12">
+        <div class="form-group formcad">
+          <label for="exampleInputName1">Nome</label>
+          <input type="name" class="form-control" id="exampleInputName1" placeholder="Nome">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputEmail1">E-mail</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputPassword1">Digite novamente</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type password">
+        </div>
+
+        <button type="button" class="btn btn-default btn-block">Registrar</button>
+      </div>
+
+    </form>
+  </div> -->
+
   <!-- div da sidemenu ativada quando click no país -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div id="sidenavMapa" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
     <div class="col-sm-2 news">
       <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
     </div>
@@ -89,7 +124,7 @@
 
 
   <!-- div do mapa -->
-  <div id="main" ng-controller="MixedGeoJSONEventsWithIDController">
+  <div id="pushMapa" ng-controller="MixedGeoJSONEventsWithIDController">
     <!-- O mapa é carregado dentro do leaflet abaixo -->
     <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
