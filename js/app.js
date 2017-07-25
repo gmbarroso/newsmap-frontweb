@@ -136,14 +136,7 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 // Controller do index/Home
 app.controller('homeCtrl', function($scope) {
 
-  function myFunction() {
-      var x = document.getElementById("Demo");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else {
-          x.className = x.className.replace(" w3-show", "");
-      }
-  }
+
 
   // $scope.index = [
   //   {id: 1, title: 'Home'},

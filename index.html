@@ -31,6 +31,7 @@
       <!-- <button ng-repeat="item in index" class="btn btn-default buttons"  ng-click="ativarSubmenu($divAtivo)">{{item.title}}</button> -->
       <button class="btn btn-default buttons">Home</button>
       <button class="btn btn-default buttons" ng-click="showLgn = !showLgn">Login</button>
+
       <button class="btn btn-default buttons" ng-show="hideLgnbtn" ng-click="showFav = !showFav">Personalizar</button>
       <button class="btn btn-default buttons" ng-show="hideLgnbtn">Logout</button>
     </div>
@@ -38,7 +39,7 @@
     <!-- <div ng-repeat="item in submenuAtivo"> -->
     <!-- {{item}} -->
     <div>
-      <div class="divLogin" ng-show="showLgn">
+      <div id="login" class="divLogin" ng-show="showLgn">
         <form class="col-sm-12">
           <div class="form-group">
             <label for="exampleInputEmail1"></label>
@@ -55,97 +56,87 @@
           <button id="cadastro" type="button" class="btn btn-default btn-block" onclick="abrirCad()">Cadastrar-se</button>
         </div>
       </div>
-<!-- 
-      <div class="w3-dropdown-click">
-        <button onclick="myFunction()" class="w3-button w3-black">Click Me!</button>
-        <div id="Demo" class="w3-dropdown-content w3-bar-block w3-border">
-          <a href="#" class="w3-bar-item w3-button">Link 1</a>
-          <a href="#" class="w3-bar-item w3-button">Link 2</a>
-          <a href="#" class="w3-bar-item w3-button">Link 3</a>
-        </div>
-      </div>
-    </div> -->
 
-    <div class="divFav" ng-show="showFav">
-      <form>
-        <div class="input">
-          <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
-          <span>Filtrar por país</span>
-        </div>
-        <select ng-show="showPaises" ng-model="paisSelecionado" ng-options="item as item.pais for item in paises">
-          <option value="">Nenhum</option>
-        </select>
-        <span>{{paisSelecionado.pais}}</span>
-      </form>
-      <form>
-        <div class="input">
-          <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais">
-          <span>Filtrar por jornal</span>
-        </div>
-        <select ng-show="showJornais" ng-model="jornalSelecionado" ng-options="item as item.jornal for item in jornais">
-          <option value="">Nenhum</option>
-        </select>
-        <span>{{jornalSelecionado.jornal}}</span>
-      </form>
+      <div class="divFav" ng-show="showFav">
+        <form>
+          <div class="input">
+            <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
+            <span>Filtrar por país</span>
+          </div>
+          <select ng-show="showPaises" ng-model="paisSelecionado" ng-options="item as item.pais for item in paises">
+            <option value="">Nenhum</option>
+          </select>
+          <span>{{paisSelecionado.pais}}</span>
+        </form>
+        <form>
+          <div class="input">
+            <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais">
+            <span>Filtrar por jornal</span>
+          </div>
+          <select ng-show="showJornais" ng-model="jornalSelecionado" ng-options="item as item.jornal for item in jornais">
+            <option value="">Nenhum</option>
+          </select>
+          <span>{{jornalSelecionado.jornal}}</span>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
-<div id="sidenavCad" class="sideCad">
-  <a href="javascript:void(0)" class="closebtnCad" onclick="fecharCad()">&times;</a>
-  <form>
-    <h3>Registro de usuário</h3>
-    <div class="col-sm-12">
-      <div class="form-group formcad">
-        <label for="exampleInputName1">Nome</label>
-        <input type="name" class="form-control" id="exampleInputName1" placeholder="Nome">
+  <div id="sidenavCad" class="sideCad">
+    <a href="javascript:void(0)" class="closebtnCad" onclick="fecharCad()">&times;</a>
+    <form>
+      <h3>Registro de usuário</h3>
+      <div class="col-sm-12">
+        <div class="form-group formcad">
+          <label for="exampleInputName1">Nome</label>
+          <input type="name" class="form-control" id="exampleInputName1" placeholder="Nome">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputEmail1">E-mail</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputPassword1">Senha</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group formcad">
+          <label for="exampleInputPassword1">Digite novamente</label>
+          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type password">
+        </div>
+        <button type="button" class="btn btn-default btn-block registrar" onclick="fecharCad()">Registrar</button>
       </div>
-      <div class="form-group formcad">
-        <label for="exampleInputEmail1">E-mail</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-      </div>
-      <div class="form-group formcad">
-        <label for="exampleInputPassword1">Senha</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-      </div>
-      <div class="form-group formcad">
-        <label for="exampleInputPassword1">Digite novamente</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type password">
-      </div>
-      <button type="button" class="btn btn-default btn-block registrar">Registrar</button>
+    </form>
+  </div>
+
+  <!-- div da sidemenu ativada quando click no país -->
+  <div id="sidenavMapa" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
+    <div class="col-sm-2 news">
+      <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
     </div>
-  </form>
-</div>
-
-<!-- div da sidemenu ativada quando click no país -->
-<div id="sidenavMapa" class="sidenav">
-  <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
-  <div class="col-sm-2 news">
-    <button ng-repeat="item in index" class="btn btn-default papers"  ng-click="ativarSubmenu(item)">{{item.title}}</button>
+    <div class="col-sm-3 feed">
+      <h1>Feed de noticias desse lado</h1>
+    </div>
+    <div class="col-sm-5 feed">
+      <h1>Notícias aqui</h1>
+    </div>
   </div>
-  <div class="col-sm-3 feed">
-    <h1>Feed de noticias desse lado</h1>
-  </div>
-  <div class="col-sm-5 feed">
-    <h1>Notícias aqui</h1>
-  </div>
-</div>
 
 
 
-<!-- div do mapa -->
-<div id="pushMapa" ng-controller="MixedGeoJSONEventsWithIDController">
-  <!-- O mapa é carregado dentro do leaflet abaixo -->
-  <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
-  <!-- espaço que carrega os nomes dos países quando mousehover -->
-  <div class="worldmap country f32">
-    <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
-    {{ selectedCountry.properties.name || 'No country'}}
+  <!-- div do mapa -->
+  <div id="pushMapa" ng-controller="MixedGeoJSONEventsWithIDController">
+    <!-- O mapa é carregado dentro do leaflet abaixo -->
+    <leaflet id="myMap" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
+    <!-- espaço que carrega os nomes dos países quando mousehover -->
+    <div class="worldmap country f32">
+      <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
+      {{ selectedCountry.properties.name || 'No country'}}
+    </div>
+    <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
+    <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
+    <h1>World map flags example</h1> -->
   </div>
-  <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
-  <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
-  <h1>World map flags example</h1> -->
-</div>
 </body>
 
 </html>
