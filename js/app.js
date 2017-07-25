@@ -35,24 +35,20 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
   //   },
   // };
 
-  //Controlando posição inicial central e zoom inicial do MAPA
+  //Controlando posição inicial central, zoom inicial do MAPA e definindo parâmetros
   angular.extend($scope, {
-
       defaults: {
+        tileLayer: 'http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
         maxZoom: 6,
         minZoom: 3,
         keyboard: true,
         zoomControlPosition: 'topright',
-        // layers: [osm],
-        // maxBounds: bounds,
         maxBoundsViscosity: 1.0,
       },
       center: {
         lat: 40.8471,
         lng: 14.0625,
         zoom: 3,
-
-
       },
       // controlando o que aparece na legenda do MAPA
       // legend: {
@@ -73,7 +69,6 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
       if (country.id) {
         openNavMapa();
       }
-
     }
 
     // Get a country paint color from the continents array of colors
@@ -115,7 +110,6 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
     // Get the countries data from a JSON
     $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-directive/master/examples/json/all.json').then(function(response, status) {
-
       // console.log('testando');
       // Put the countries on an associative array
       $scope.countries = {};
@@ -140,9 +134,6 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
   // Controller do index/Home
   app.controller('homeCtrl', function($scope) {
-
-
-
     // $scope.index = [
     //   {id: 1, title: 'Home'},
     //   {id: 2,
@@ -164,6 +155,4 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
     // $scope.ativarSubmenu = function(item){
     //   $scope.submenuAtivo = item.submenu;
     // }
-
-
   });

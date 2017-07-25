@@ -48,7 +48,7 @@ div.worldmap.country {
   position: absolute;
   bottom: 20px;
   right: 4px;
-  z-index: 100;
+  z-index: 1;
   padding: .2em .5em;
   line-height: 1.1em;
   text-align: center;
@@ -58,6 +58,7 @@ div.worldmap.country.f32 {
   opacity: 1;
   color: black;
 
+
 }
 
 .angular-leaflet-map {
@@ -66,7 +67,7 @@ div.worldmap.country.f32 {
   /*background: -webkit-linear-gradient(to right, #26D0CE , #1A2980 );
   background: linear-gradient(to right, #26D0CE , #1A2980 );*/
   border: none;
-
+  z-index: 0;
 }
 
 .coluna-esquerda{
