@@ -37,128 +37,133 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
   //Controlando posição inicial central e zoom inicial do MAPA
   angular.extend($scope, {
-    // pq não está dando certo?
-    // defaults: {
-    //   maxZoom: 8,
-    //   minZoom: 4,
-    //   doubleClickZoom: false
-    // },
-    center: {
-      lat: 40.8471,
-      lng: 14.0625,
-      zoom: 3,
 
-    },
-    // controlando o que aparece na legenda do MAPA
-    // legend: {
-    //   colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', 'black' ],
-    //   labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
-    // },
-  });
+      defaults: {
+        maxZoom: 6,
+        minZoom: 3,
+        keyboard: true,
+        zoomControlPosition: 'topright',
+        // layers: [osm],
+        // maxBounds: bounds,
+        maxBoundsViscosity: 1.0,
+      },
+      center: {
+        lat: 40.8471,
+        lng: 14.0625,
+        zoom: 3,
 
-  function openNavMapa() {
-    document.getElementById("sidenavMapa").style.width = "100%";
-    document.getElementById("pushMapa").style.marginLeft = "100%";
-  }
 
-  // função para abrir o side menu sooomente clicando no país
-  function countryClick(country, event) {
-    country = country.feature;
-    // console.log(country);
-    if (country.id) {
-      openNavMapa();
-    }
-
-  }
-
-  // Get a country paint color from the continents array of colors
-  function getColor(country) {
-    if (!country || !country["region-code"]) {
-      //definindo cor dos continentes
-      return "black";
-    }
-
-    var colors = continentProperties[country["region-code"]].colors;
-    var index = country["alpha-3"].charCodeAt(0) % colors.length ;
-    return colors[index];
-  }
-
-  //estilo dos limites entre países
-  function style(feature) {
-    return {
-      fillColor: getColor($scope.countries[feature.id]),
-      weight: 2,
-      opacity: 1,
-      color: 'grey',
-      dashArray: '3',
-      fillOpacity: 0.7
-    };
-  }
-
-  // mudança do estilo quando mouse
-  function countryMouseover(feature, leafletEvent) {
-    var layer = leafletEvent.target;
-    layer.setStyle({
-      weight: 2,
-      color: 'black',
-      fillColor: 'white'
+      },
+      // controlando o que aparece na legenda do MAPA
+      // legend: {
+      //   colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', 'black' ],
+      //   labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
+      // },
     });
-    layer.bringToFront();
-    $scope.selectedCountry = feature;
-    // console.log($scope.selectedCountry);
-  }
 
-  // Get the countries data from a JSON
-  $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-directive/master/examples/json/all.json').then(function(response, status) {
-
-    // console.log('testando');
-    // Put the countries on an associative array
-    $scope.countries = {};
-    for (var i=0; i< response.length; i++) {
-      var country = data[i];
-      $scope.countries[country['alpha-3']] = country;
+    function openNavMapa() {
+      document.getElementById("sidenavMapa").style.width = "100%";
+      document.getElementById("pushMapa").style.marginLeft = "100%";
     }
 
-    // Get the countries geojson data from a JSON
-    $http.get("https://raw.githubusercontent.com/tombatossals/angular-leaflet-directive/master/examples/json/countries.geo.json").then(function(response, status) {
-      angular.extend($scope, {
-        geojson: {
-          data: response.data,
-          style: style,
-          resetStyleOnMouseout: true
-        },
-        selectedCountry: {}
+    // função para abrir o side menu sooomente clicando no país
+    function countryClick(country, event) {
+      country = country.feature;
+      // console.log(country);
+      if (country.id) {
+        openNavMapa();
+      }
+
+    }
+
+    // Get a country paint color from the continents array of colors
+    function getColor(country) {
+      if (!country || !country["region-code"]) {
+        //definindo cor dos continentes
+        return "black";
+      }
+
+      var colors = continentProperties[country["region-code"]].colors;
+      var index = country["alpha-3"].charCodeAt(0) % colors.length ;
+      return colors[index];
+    }
+
+    //estilo dos limites entre países
+    function style(feature) {
+      return {
+        fillColor: getColor($scope.countries[feature.id]),
+        weight: 2,
+        opacity: 1,
+        color: 'grey',
+        dashArray: '3',
+        fillOpacity: 0.7
+      };
+    }
+
+    // mudança do estilo quando mouse
+    function countryMouseover(feature, leafletEvent) {
+      var layer = leafletEvent.target;
+      layer.setStyle({
+        weight: 2,
+        color: 'black',
+        fillColor: 'white'
+      });
+      layer.bringToFront();
+      $scope.selectedCountry = feature;
+      // console.log($scope.selectedCountry);
+    }
+
+    // Get the countries data from a JSON
+    $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-directive/master/examples/json/all.json').then(function(response, status) {
+
+      // console.log('testando');
+      // Put the countries on an associative array
+      $scope.countries = {};
+      for (var i=0; i< response.length; i++) {
+        var country = data[i];
+        $scope.countries[country['alpha-3']] = country;
+      }
+
+      // Get the countries geojson data from a JSON
+      $http.get("https://raw.githubusercontent.com/tombatossals/angular-leaflet-directive/master/examples/json/countries.geo.json").then(function(response, status) {
+        angular.extend($scope, {
+          geojson: {
+            data: response.data,
+            style: style,
+            resetStyleOnMouseout: true
+          },
+          selectedCountry: {}
+        });
       });
     });
+  }]);
+
+  // Controller do index/Home
+  app.controller('homeCtrl', function($scope) {
+
+
+
+    // $scope.index = [
+    //   {id: 1, title: 'Home'},
+    //   {id: 2,
+    //     title: 'Login',
+    //     submenu:[
+    //       'xablau',
+    //       'xpto'
+    //     ]},
+    //     {id: 3,
+    //       title: 'Personalizar',
+    //       submenu:[
+    //         'bla bla bla',
+    //         'ble ble ble'
+    //       ]
+    //     },
+    //     {id: 4, title: 'Logout'}
+    //   ];
+
+    // $scope.ativarSubmenu = function(item){
+    //   $scope.submenuAtivo = item.submenu;
+    // }
+
+
   });
-}]);
-
-// Controller do index/Home
-app.controller('homeCtrl', function($scope) {
-
-
-
-  // $scope.index = [
-  //   {id: 1, title: 'Home'},
-  //   {id: 2,
-  //     title: 'Login',
-  //     submenu:[
-  //       'xablau',
-  //       'xpto'
-  //     ]},
-  //     {id: 3,
-  //       title: 'Personalizar',
-  //       submenu:[
-  //         'bla bla bla',
-  //         'ble ble ble'
-  //       ]
-  //     },
-  //     {id: 4, title: 'Logout'}
-  //   ];
-
-  // $scope.ativarSubmenu = function(item){
-  //   $scope.submenuAtivo = item.submenu;
-  // }
-
-
-});
