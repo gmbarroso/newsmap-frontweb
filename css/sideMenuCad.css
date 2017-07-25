@@ -1,0 +1,60 @@
+h3 {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.formcad {
+  padding-bottom: 15px;
+}
+
+.registrar {
+  color: #eaedf2;
+  border-color: green;
+  background-color: green;
+  padding-top: 5px;
+}
+
+.sideCad {
+  background-color: #6a6d72;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  font-size: 14px;
+}
+
+.sideCad a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #eaedf2;
+  display: block;
+  transition: 0.3s;
+}
+
+.sideCad a:hover, .offcanvas a:focus{
+  color: #233a60;
+}
+
+.sideCad .closebtnCad {
+  position: absolute;
+  top: -15;
+  right: 2px;
+  font-size: 36px;
+  margin-left: 2px;
+}
+
+#sidenavCad {
+  /*transition: margin-left 3s;*/
+  /*padding: 16px;*/
+}
+
+@media screen and (max-height: 450px) {
+  .sideCad {padding-top: 15px;}
+  .sideCad a {font-size: 18px;}
+}

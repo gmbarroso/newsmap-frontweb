@@ -56,6 +56,7 @@ div.worldmap.country {
 
 div.worldmap.country.f32 {
   opacity: 1;
+  color: black;
 
 }
 
@@ -89,6 +90,11 @@ div.worldmap.country.f32 {
 
 }
 
+.btnentrar {
+  background-color: green;
+  color: #eaedf2;
+  border-color: green;
+}
 
 .divLogin {
   margin-top: 25px;
@@ -106,13 +112,6 @@ div.worldmap.country.f32 {
   color: #eaedf2;
   margin-left: 5px;
   position: top;
-
-}
-
-.fb {
-  width: 100%;
-  border-radius: 0px;
-  border-top: 1px solid #eaedf2
 
 }
 
