@@ -6,7 +6,7 @@
   <script src="./node_modules/leaflet/dist/leaflet.js"></script>
   <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
   <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="http://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="http://cloud.github.com/down  loads/lafeber/world-flags-sprite/flags32.css" /> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/sideMenuCad.css">
@@ -104,34 +104,38 @@
     </form>
   </div>
 
-  <!-- div da sidemenu ativada quando click no país -->
-  <div id="sidenavMapa" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
-    <div class="col-sm-2 news">
-      <h3 class="selecionar">Selecione um jornal</h3>
-      <button>
-      </button>
-    </div>
-    <div class="col-sm-3 feed">
-      <h1>Feed de noticias desse lado</h1>
-    </div>
-    <div class="col-sm-5 feed">
-      <h1>Notícias aqui</h1>
-    </div>
-  </div>
-
   <!-- div do mapa -->
   <div id="pushMapa" ng-controller="MixedGeoJSONEventsWithIDController">
     <!-- O mapa é carregado dentro do leaflet abaixo -->
     <leaflet id="myMap" defaults="defaults" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
     <div class="worldmap country f32">
-      <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"></div>
+      <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase">
+      </div>
       {{ selectedCountry.properties.name || 'No country'}}
     </div>
     <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
     <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
     <h1>World map flags example</h1> -->
+
+    <!-- div da sidemenu ativada quando click no país -->
+    <div id="sidenavMapa" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
+      <div>
+        <div ng-show="clickedCountry" class="flag" ng-class="countries[clickedCountry.id]['alpha-2']|lowercase">
+        </div>
+        {{ clickedCountry.properties.name || 'No country'}}
+      </div>
+      <div class="col-sm-4 news">
+        <h3 class="selecionar">Selecione um jornal</h3>
+      </div>
+      <div class="col-sm-4 feed">
+        <h1>Feed de noticias desse lado</h1>
+      </div>
+      <div class="col-sm-12 noticias">
+        <h1>Notícias aqui</h1>
+      </div>
+    </div>
   </div>
 </body>
 

@@ -33,12 +33,36 @@ margin-left: 2px;
 }
 
 .news {
-width: 250px;
-padding: 0px;
+width: 300px;
+border-right: 1px solid #eaedf2;
 }
-.papers {
-width: 100%
+
+.news img{
+  height: 50px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
+.news button {
+  width: 100%;
+  border-radius: 10px;
+  background-color: #042b6b;
+  border-color: #042b6b;
+  margin-bottom: 10px;
+}
+
+.feed {
+  width: 350px;
+  height: 465px;
+  border-right: 1px solid #eaedf2;
+  text-align: center;
+}
+
+.noticias {
+  text-align: center;
+  width: 500px;
+}
+
 
 #pushMapa {
 transition: margin-left .5s;
