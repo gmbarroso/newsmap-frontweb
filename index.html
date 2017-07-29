@@ -128,6 +128,9 @@
       </div>
       <div class="col-sm-4 news">
         <h3 class="selecionar">Selecione um jornal</h3>
+        <button ng-repeat="item in jornaisPaisClicado" class="jornal button button-block button-{{item.pagina}}" ng-click="acessar(selecionado.nome,item.pagina)">
+          <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
+        </button>
       </div>
       <div class="col-sm-4 feed">
         <h1>Feed de noticias desse lado</h1>
