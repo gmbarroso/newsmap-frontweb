@@ -46,8 +46,8 @@ border-right: 1px solid #eaedf2;
 .news button {
   width: 100%;
   border-radius: 10px;
-  background-color: #042b6b;
-  border-color: #042b6b;
+  background-color: white;
+  border: 0px;
   margin-bottom: 10px;
 }
 

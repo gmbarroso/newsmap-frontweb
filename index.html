@@ -128,12 +128,18 @@
       </div>
       <div class="col-sm-4 news">
         <h3 class="selecionar">Selecione um jornal</h3>
-        <button ng-repeat="item in jornaisPaisClicado" class="jornal button button-block button-{{item.pagina}}" ng-click="acessar(selecionado.nome,item.pagina)">
+        <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="(selecionado.nomeJornal, item.nomePais)">
           <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
         </button>
       </div>
       <div class="col-sm-4 feed">
-        <h1>Feed de noticias desse lado</h1>
+          <!-- substituí o href pelo ngclick e declarei uma função que abre a função de noticias do g1 -->
+          <a class="item" ng-repeat="noticia in selecionado"  ng-click="abrirApp(noticia.link)" target="_blank">
+            <h2 class="noticia-title">{{noticia.titulo}}</h2>
+            <p>{{noticia.desc}}</p>
+            <p>Fonte: G1 - g1.globo.com</p>
+          </a>
+        </div>
       </div>
       <div class="col-sm-12 noticias">
         <h1>Notícias aqui</h1>

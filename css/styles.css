@@ -119,3 +119,58 @@ div.worldmap.country.f32 {
 select {
   width: 100%;
 }
+
+button.jornal.button-g1{
+  background-color: #a3101a;
+}
+
+button.jornal.button-lavanguardia{
+  background-color: #1b2f6d;
+}
+
+button.jornal.button-otempo{
+  background-color: #1b4623;
+}
+
+button.jornal.button-oglobo{
+  background-color: #05509a;
+}
+
+button.jornal.button-lavoz{
+  background-color: #05509a;
+}
+
+button.jornal.button-nationalpost{
+  background-color: #fed458;
+}
+
+button.jornal.button-metronews{
+  background-color: #04803f;
+}
+
+button.jornal.button-torontostar{
+  background-color: #236eb5;
+}
+
+button.jornal.button-lefigaro{
+  background-color: #2970B7;
+}
+
+button.jornal.button-leparisien{
+  background-color: #379AD5;
+}
+
+button.jornal.button-lexpressfr{
+  background-color: #E51B29;
+}
+
+button.jornal.button-ilsole{
+  background-color: #FDE1C9;
+}
+
+button.jornal.button-reforma{
+  background-color: #238135;
+}
+
+.feed {
+}
