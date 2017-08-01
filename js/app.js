@@ -16,6 +16,8 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
   });
 
+  // console.log(countries[selectedCountry.id]);
+
   //Controlando posição inicial central, zoom inicial do MAPA e definindo parâmetros
   angular.extend($scope, {
     defaults: {
@@ -207,7 +209,6 @@ function countryClick(feature, country, event) {
     }
   }
 
-
   //$scope.jornalClicado = function() {
 
   // $interval(function(){
@@ -323,148 +324,40 @@ $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-direct
 });
 }]);
 
-// Controller do index/Home
-// app.controller('homeCtrl', function($scope) {
-// $scope.index = [
-//   {id: 1, title: 'Home'},
-//   {id: 2,
-//     title: 'Login',
-//     submenu:[
-//       'xablau',
-//       'xpto'
-//     ]},
-//     {id: 3,
-//       title: 'Personalizar',
-//       submenu:[
-//         'bla bla bla',
-//         'ble ble ble'
-//       ]
-//     },
-//     {id: 4, title: 'Logout'}
-//   ];
+.controller('LoginController', function($scope, $state, $http) {
+  $scope.data = {};
 
-// $scope.ativarSubmenu = function(item){
-//   $scope.submenuAtivo = item.submenu;
-// }
-// });
-// app.controller('homeCtrl', function($scope) {
-//
-//   $scope.listaPaises = [
-//     { nome : 'Brazil',
-//     conteudo : [
-//       {id: 1, paper: 'Folha', pagina: 'folha', pais: 'brasil'},
-//       {id: 2, paper: 'Globo', pagina: 'g1', pais: 'brasil'},
-//       {id: 3, paper: 'Estadão', pagina: 'estadao', pais: 'brasil'},
-//       {id: 4, paper: 'O Tempo', pagina: 'otempo', pais: 'brasil'},
-//       {id: 5, paper: 'O Globo', pagina: 'oglobo', pais: 'brasil'}
-//     ]
-//   },
-//
-//   { nome : 'Argentina',
-//   conteudo : [
-//     {id: 1, paper: 'Clarín', pagina: 'clarin'},
-//     {id: 2, paper: 'La Nación', pagina: 'lanacion'},
-//     {id: 3, paper: 'Los Andes', pagina: 'losandes'},
-//     {id: 4, paper: 'La Voz', pagina: 'lavoz'},
-//   ]
-// },
-//
-// { nome : 'Australia',
-// conteudo : [
-//   {id: 1, paper: 'The Age', pagina: 'theage'},
-//   {id: 2, paper: 'Daily Telegraph', pagina: 'telegraph'},
-//   {id: 3, paper: 'Courier Mail', pagina: 'couriermail'},
-//   {id: 4, paper: 'The Sydney Morning Herald', pagina: 'sydneyherald'},
-//   {id: 5, paper: 'Herald Sun', pagina: 'heraldsun'},
-// ]
-// },
-//
-// { nome : 'Canada',
-// conteudo : [
-// {id: 1, paper: 'Toronto Star', pagina: 'torontostar'},
-// {id: 2, paper: 'Vancouver Sun', pagina: 'vancouversun'},
-// {id: 3, paper: 'Metro News Canada', pagina: 'metronews'},
-// {id: 4, paper: 'National Post', pagina: 'nationalpost'},
-// {id: 5, paper: 'Ottawa Citizen', pagina: 'ottawacitizen'},
-// ]
-// },
-//
-// { nome : 'Spain',
-// conteudo : [
-// {id: 1, paper: 'El País', pagina: 'elpais', pais: 'espanha'},
-// {id: 2, paper: 'El Mundo', pagina: 'elmundo', pais: 'espanha'},
-// {id: 3, paper: 'La Vanguardia', pagina: 'lavanguardia', pais: 'espanha'},
-// {id: 4, paper: 'ABC España', pagina: 'abcespana', pais: 'espanha'},
-// {id: 5, paper: 'El Correo', pagina: 'elcorreo', pais: 'espanha'},
-// ]
-// },
-//
-// { nome : 'United States of America',
-// conteudo : [
-// {id: 1, paper: 'The New York Times', pagina: 'nyt', pais: 'eua'},
-// {id: 2, paper: 'USA Today', pagina: 'usatoday', pais: 'eua'},
-// {id: 3, paper: 'Washington Post', pagina: 'washpost', pais: 'eua'},
-// {id: 4, paper: 'New York Daily News', pagina: 'nydailynews', pais: 'eua'},
-// {id: 5, paper: 'The Wall Street Journal', pagina: 'twsj', pais: 'eua'},
-// ]
-// },
-//
-// { nome : 'France',
-// conteudo : [
-// {id: 1, paper: 'Le Monde', pagina: 'lemonde'},
-// {id: 2, paper: 'Le Figaro', pagina: 'lefigaro'},
-// {id: 3, paper: 'Le Parisien', pagina: 'leparisien'},
-// {id: 4, paper: 'Ouest France', pagina: 'ouestfrance'},
-// {id: 5, paper: "L'Express FR", pagina: 'lexpressfr'},
-// ]
-// },
-//
-// { nome : 'Italy',
-// conteudo : [
-// {id: 1, paper: 'La Stampa', pagina: 'lastampa'},
-// {id: 2, paper: 'La Repubblica', pagina: 'larepubblica'},
-// {id: 3, paper: 'Corriere Della Sera', pagina: 'cds'},
-// {id: 4, paper: 'Il Sole 24 Ore', pagina: 'ilsole'},
-// {id: 5, paper: 'Il Messaggero', pagina: 'ilmessaggero'},
-// ]
-// },
-//
-// { nome : 'Japan',
-// conteudo : [
-// {id: 1, paper: 'NHK Online', pagina: 'nhkonline'},
-// {id: 2, paper: 'The Japan Times', pagina: 'thejapantimes'},
-// {id: 3, paper: 'Asia Nikkei', pagina: 'asianikkei'},
-// {id: 4, paper: 'Japan Today', pagina: 'japantoday'},
-// {id: 5, paper: 'Asahi Shimbun', pagina: 'asahishimbun'},
-// ]
-// },
-//
-// { nome : 'Mexico',
-// conteudo : [
-// {id: 1, paper: 'La Jornada', pagina: 'lajornada'},
-// {id: 2, paper: 'Reforma', pagina: 'reforma'},
-// {id: 3, paper: 'El Universal', pagina: 'eluniversalmx'},
-// ]
-// },
-//
-// { nome : 'United Kingdom',
-// conteudo : [
-// {id: 1, paper: 'The Daily Mail UK', pagina: 'tdmuk'},
-// {id: 2, paper: 'Metro UK', pagina: 'metrouk'},
-// {id: 3, paper: 'BBC', pagina: 'bbc'},
-// {id: 4, paper: 'The Guardian', pagina: 'theguardian'},
-// {id: 5, paper: 'The Independent', pagina: 'theindependent'},
-// ]
-// },
-//
-// { nome : 'Venezuela',
-// conteudo : [{id: 1, paper: 'La Patilla', pagina: 'lapatilla'},
-// {id: 2, paper: 'El Universal', pagina: 'eluniversal'},]
-// },
-//
-// { nome : 'India',
-// conteudo : []
-// }
-// ]
-//
-// });
+  $scope.logar = function() {
+
+    $http.post('http://localhost:3000/login', $scope.data).then(function(resposta){
+      if(!resposta.data){
+        alert('Login invalido');
+        return;
+      }
+      Sessao.inicializar(resposta.data);
+      $state.go('app.home');
+    })
+  };
+  $scope.irCadastro = function() {
+    $state.go("cadastro");
+
+  }
+})
+
+.controller('CadastroController', function($scope, $state, $http) {
+  $scope.dados = {};
+
+  $scope.cadastrar = function(){
+    console.log($scope.dados);
+    $http.post('http://localhost:3000/usuario', $scope.dados).then(function(resposta){
+      console.log($scope.dados);
+      Sessao.inicializar(resposta.dados);
+      console.log($scope.dados);
+      console.log("Cadastro ok!")
+    })
+  }
+  $scope.cancelar = function() {
+    $state.go("app.home");
+
+  }
+})

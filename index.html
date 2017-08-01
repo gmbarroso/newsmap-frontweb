@@ -6,7 +6,7 @@
   <script src="./node_modules/leaflet/dist/leaflet.js"></script>
   <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
   <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="http://cloud.github.com/down  loads/lafeber/world-flags-sprite/flags32.css" /> -->
+  <!-- <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/lafeber/world-flags-sprite/master/stylesheets/flags32.css" /> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/sideMenuCad.css">
@@ -24,15 +24,13 @@
   <div class="col-sm-2 coluna-esquerda">
     <img class="logo" src="./img/logo3.png" alt="">
     <div class="btns">
-      <!-- <button ng-repeat="item in index" class="btn btn-default buttons"  ng-click="ativarSubmenu($divAtivo)">{{item.title}}</button> -->
       <button class="btn btn-default buttons">Home</button>
       <button class="btn btn-default buttons" onclick="abrirLgn()">Login</button>
       <button class="btn btn-default buttons" onclick="abrirCad()">Cadastrar-se</button>
-      <!-- <button class="btn btn-default buttons" ng-show="hideLgnbtn" ng-click="showFav = !showFav">Personalizar</button> -->
       <button class="btn btn-default buttons">Logout</button>
     </div>
 
-    <!-- div Login -->
+    <!-- sidemenu Lgn-->
     <div id="sidenavLgn" class="sideLgn">
       <a href="javascript:void(0)" class="closebtnLgn" onclick="fecharLgn()">&times;</a>
       <form class="col-sm-12">
@@ -86,12 +84,9 @@
           <select ng-show="showPaises" ng-model="nomeDoPais" ng-options="pais.nome for pais in listaPaises">
             <option value="">Nenhum</option>
           </select>
-          <!-- <span>{{listaPaises.nome}}</span> -->
         </form>
         <form ng-show="nomeDoPais">
-            <!-- <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais"> -->
             <span>Filtrar por jornal</span>
-
           <select ng-model="nomeDoJornal" ng-options="pais.paper for pais in nomeDoPais.conteudo">
             <option value="">Nenhum</option>
           </select>
@@ -105,13 +100,13 @@
     </form>
   </div>
 
-  <!-- div do mapa -->
+  <!-- Mapa -->
   <div id="pushMapa">
     <!-- O mapa é carregado dentro do leaflet abaixo -->
     <leaflet id="myMap" defaults="defaults" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
     <div class="worldmap country f32">
-      <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase">
+      <!-- <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"> -->
       </div>
       {{ selectedCountry.properties.name || 'No country'}}
     </div>
@@ -129,7 +124,6 @@
       </div>
       <div class="col-sm-4 news">
         <span>{{diaSemana + ', ' + dia + '/' + mes + '/' + ano}}</span><br>
-        <!-- <span ng-click="abrirNoticia()">\teste noti</span> -->
         <h3 class="selecionar">Selecione um jornal</h3>
         <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="submit(item)">
           <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
@@ -141,8 +135,6 @@
           <h4 class="noticia-desc">{{noticia.desc}}</h4>
         </div>
       </div>
-      <!-- <div class="col-sm-12 noticias" id="lerNoticia">
-    </div> -->
   </div>
 </div>
 </body>
