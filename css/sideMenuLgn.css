@@ -1,15 +1,20 @@
-h4 {
+h3 {
   text-align: center;
-  margin-top: 0px;
+  margin-bottom: 50px;
 }
 
-.formcad {
-  padding-bottom: 15px;
-  font-size: 12px;
+.formlgn {
+  padding-bottom: 10px;
 }
 
-.divCad {
+.divLgn {
   padding: 0px;
+}
+
+.btnentrar {
+  background-color: green;
+  color: #eaedf2;
+  border-color: green;
 }
 
 .registrar {
@@ -19,7 +24,7 @@ h4 {
   padding-top: 5px;
 }
 
-.sideCad {
+.sideLgn {
   background-color: #1D1D1B;
   height: 100%;
   width: 0;
@@ -33,7 +38,7 @@ h4 {
   font-size: 14px;
 }
 
-.sideCad a {
+.sideLgn a {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
@@ -42,11 +47,11 @@ h4 {
   transition: 0.3s;
 }
 
-.sideCad a:hover, .offcanvas a:focus{
+.sideLgn a:hover, .offcanvas a:focus{
   color: #233a60;
 }
 
-.sideCad .closebtnCad {
+.sideLgn .closebtnLgn {
   position: absolute;
   top: -15;
   right: 2px;
@@ -54,12 +59,12 @@ h4 {
   margin-left: 2px;
 }
 
-#sidenavCad {
+#sidenavLgn {
   /*transition: margin-left 3s;*/
   /*padding: 16px;*/
 }
 
 @media screen and (max-height: 450px) {
-  .sideCad {padding-top: 15px;}
-  .sideCad a {font-size: 18px;}
+  .sideLgn {padding-top: 15px;}
+  .sideLgn a {font-size: 18px;}
 }

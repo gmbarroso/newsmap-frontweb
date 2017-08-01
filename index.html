@@ -10,78 +10,55 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/sideMenuCad.css">
+  <link rel="stylesheet" href="./css/sideMenuLgn.css">
   <link rel="stylesheet" href="./css/sideMenuMapa.css">
   <script src="./js/app.js"></script>
   <script src="./js/sideMenuCad.js"></script>
+  <script src="./js/sideMenuLgn.js"></script>
   <script src="./js/sideMenuMapa.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
 </head>
 
-<body>
+<body ng-controller="MixedGeoJSONEventsWithIDController">
   <!-- div menu do lado esquerdo -->
-  <div class="col-sm-2 coluna-esquerda" ng-controller="homeCtrl">
-    <h1>NewsMap</h1>
+  <div class="col-sm-2 coluna-esquerda">
+    <img class="logo" src="./img/logo3.png" alt="">
     <div class="btns">
       <!-- <button ng-repeat="item in index" class="btn btn-default buttons"  ng-click="ativarSubmenu($divAtivo)">{{item.title}}</button> -->
       <button class="btn btn-default buttons">Home</button>
-      <button class="btn btn-default buttons" ng-click="showLgn = !showLgn">Login</button>
-      <button class="btn btn-default buttons" ng-show="hideLgnbtn" ng-click="showFav = !showFav">Personalizar</button>
-      <button class="btn btn-default buttons" ng-show="hideLgnbtn">Logout</button>
+      <button class="btn btn-default buttons" onclick="abrirLgn()">Login</button>
+      <button class="btn btn-default buttons" onclick="abrirCad()">Cadastrar-se</button>
+      <!-- <button class="btn btn-default buttons" ng-show="hideLgnbtn" ng-click="showFav = !showFav">Personalizar</button> -->
+      <button class="btn btn-default buttons">Logout</button>
     </div>
-    <!-- <div ng-repeat="item in submenuAtivo"> -->
-    <!-- {{item}} -->
-    <div>
-      <!-- div Login -->
-      <div id="login" class="divLogin" ng-show="showLgn">
-        <form class="col-sm-12">
-          <div class="form-group">
+
+    <!-- div Login -->
+    <div id="sidenavLgn" class="sideLgn">
+      <a href="javascript:void(0)" class="closebtnLgn" onclick="fecharLgn()">&times;</a>
+      <form class="col-sm-12">
+        <h4>Entre com seu e-mail e senha</h4>
+        <div class="col-sm-12 divLgn">
+          <div class="form-group formLgn">
             <label for="exampleInputEmail1"></label>
             <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
           </div>
-          <div class="form-group">
+          <div class="form-group formLgn">
             <label for="exampleInputPassword1"></label>
             <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
           </div>
-        </form>
-        <div class="col-sm-12">
-          <button type="button" class="btn btn-default btn-block btnentrar" ng-click="hideLgnbtn">Entrar</button>
-          <button type="button" class="btn btn-primary btn-block fb">Entre com facebook</button>
-          <button id="cadastro" type="button" class="btn btn-default btn-block" onclick="abrirCad()">Cadastrar-se</button>
+          <button type="button" class="btn btn-default btn-block btnentrar" onclick="fecharLgn()">Entrar</button>
+          <button type="button" class="btn btn-primary btn-block fb" onclick="fecharLgn()">Entre com facebook</button>
         </div>
-      </div>
-
-      <!-- Div favoritos -->
-      <div class="divFav" ng-show="showFav">
-        <form>
-          <div class="input">
-            <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
-            <span>Filtrar por país</span>
-          </div>
-          <select ng-show="showPaises" ng-model="paisSelecionado" ng-options="item as item.pais for item in paises">
-            <option value="">Nenhum</option>
-          </select>
-          <span>{{paisSelecionado.pais}}</span>
-        </form>
-        <form>
-          <div class="input">
-            <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais">
-            <span>Filtrar por jornal</span>
-          </div>
-          <select ng-show="showJornais" ng-model="jornalSelecionado" ng-options="item as item.jornal for item in jornais">
-            <option value="">Nenhum</option>
-          </select>
-          <span>{{jornalSelecionado.jornal}}</span>
-        </form>
-      </div>
+      </form>
     </div>
   </div>
 
   <!-- Sidemenu do Cadastro -->
   <div id="sidenavCad" class="sideCad">
     <a href="javascript:void(0)" class="closebtnCad" onclick="fecharCad()">&times;</a>
-    <form>
-      <h3>Registro de usuário</h3>
-      <div class="col-sm-12">
+    <form class="col-sm-12">
+      <h4>Registro de usuário</h4>
+      <div class="col-sm-12 divCad">
         <div class="form-group formcad">
           <label for="exampleInputName1">Nome</label>
           <input type="name" class="form-control" id="exampleInputName1" placeholder="Nome">
@@ -98,6 +75,30 @@
           <label for="exampleInputPassword1">Digite novamente</label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type password">
         </div>
+      </div>
+      <div class="divFav">
+        <form>
+          <h4>Preferências</h4>
+          <div class="input">
+            <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
+            <span>Filtrar por país</span>
+          </div>
+          <select ng-show="showPaises" ng-model="nomeDoPais" ng-options="pais.nome for pais in listaPaises">
+            <option value="">Nenhum</option>
+          </select>
+          <!-- <span>{{listaPaises.nome}}</span> -->
+        </form>
+        <form ng-show="nomeDoPais">
+            <!-- <input id="dropJornal"  type="checkbox" name="jornais" value="jornais" ng-click="showJornais = !showJornais"> -->
+            <span>Filtrar por jornal</span>
+
+          <select ng-model="nomeDoJornal" ng-options="pais.paper for pais in nomeDoPais.conteudo">
+            <option value="">Nenhum</option>
+          </select>
+          <span>{{listaPaises.nome}}</span>
+        </form>
+      </div>
+      <div class="col-sm-12">
         <button type="button" class="btn btn-default btn-block registrar" onclick="fecharCad()">Registrar</button>
         <button type="button" class="btn btn-primary btn-block fb" onclick="fecharCad()">Registrar com facebook</button>
       </div>
@@ -105,7 +106,7 @@
   </div>
 
   <!-- div do mapa -->
-  <div id="pushMapa" ng-controller="MixedGeoJSONEventsWithIDController">
+  <div id="pushMapa">
     <!-- O mapa é carregado dentro do leaflet abaixo -->
     <leaflet id="myMap" defaults="defaults" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
@@ -124,28 +125,26 @@
       <div>
         <div ng-show="clickedCountry" class="flag" ng-class="countries[clickedCountry.id]['alpha-2']|lowercase">
         </div>
-        {{ clickedCountry.properties.name || 'No country'}}
+        {{clickedCountry.properties.name || 'No country'}}
       </div>
       <div class="col-sm-4 news">
+        <span>{{diaSemana + ', ' + dia + '/' + mes + '/' + ano}}</span><br>
+        <!-- <span ng-click="abrirNoticia()">\teste noti</span> -->
         <h3 class="selecionar">Selecione um jornal</h3>
-        <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="(selecionado.nomeJornal, item.nomePais)">
+        <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="submit(item)">
           <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
         </button>
       </div>
       <div class="col-sm-4 feed">
-          <!-- substituí o href pelo ngclick e declarei uma função que abre a função de noticias do g1 -->
-          <a class="item" ng-repeat="noticia in selecionado"  ng-click="abrirApp(noticia.link)" target="_blank">
-            <h2 class="noticia-title">{{noticia.titulo}}</h2>
-            <p>{{noticia.desc}}</p>
-            <p>Fonte: G1 - g1.globo.com</p>
-          </a>
+        <div class="item-noticias" ng-repeat="noticia in noticias" target="_blank">
+          <a href="{{noticia.link}}" target="_blank" id="noticia-title" ng-click="abrirNoticia(noticia)">{{noticia.titulo}}</a>
+          <h4 class="noticia-desc">{{noticia.desc}}</h4>
         </div>
       </div>
-      <div class="col-sm-12 noticias">
-        <h1>Notícias aqui</h1>
-      </div>
-    </div>
+      <!-- <div class="col-sm-12 noticias" id="lerNoticia">
+    </div> -->
   </div>
+</div>
 </body>
 
 </html>

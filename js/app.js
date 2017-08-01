@@ -16,29 +16,6 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
 
   });
 
-  // var continentProperties= {
-  //   "009": {
-  //     name: 'Oceania',
-  //     colors: [ '#CC0066', '#993366', '#990066', '#CC3399', '#CC6699' ]
-  //   },
-  //   "019": {
-  //     name: 'America',
-  //     colors: [ '#006699', '#336666', '#003366', '#3399CC', '#6699CC' ]
-  //   },
-  //   "150": {
-  //     name: 'Europe',
-  //     colors: [ '#FF0000', '#CC3333', '#990000', '#FF3333', '#FF6666' ]
-  //   },
-  //   "002": {
-  //     name: 'Africa',
-  //     colors: [ '#00CC00', '#339933', '#009900', '#33FF33', '#66FF66' ]
-  //   },
-  //   "142": {
-  //     name: 'Asia',
-  //     colors: [ '#FFCC00', '#CC9933', '#999900', '#FFCC33', '#FFCC66' ]
-  //   },
-  // };
-
   //Controlando posição inicial central, zoom inicial do MAPA e definindo parâmetros
   angular.extend($scope, {
     defaults: {
@@ -54,199 +31,215 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
       lng: 14.0625,
       zoom: 3,
     },
-    // controlando o que aparece na legenda do MAPA
-    // legend: {
-    //   colors: [ '#CC0066', '#006699', '#FF0000', '#00CC00', 'black' ],
-    //   labels: [ 'Oceania', 'America', 'Europe', 'Africa', 'Asia' ]
-    // },
   });
 
-  function openNavMapa() {
-    document.getElementById("sidenavMapa").style.width = "100%";
-    document.getElementById("pushMapa").style.marginLeft = "100%";
-  }
-
-  // função para abrir o side menu sooomente clicando no país
-  function countryClick(feature, country, event) {
-    country = country.feature;
-    // console.log(country);
-    // console.log(country.properties.name);
-    // if (country.id) {
-    //   openNavMapa();
-    // }
-    $scope.clickedCountry = country;
-
-    $scope.listaPaises = [
-      { nome : 'Brazil',
-      conteudo : [
-        {id: 1, paper: 'Folha', pagina: 'folha'},
-        {id: 1, paper: 'Globo', pagina: 'g1'},
-        {id: 1, paper: 'Estadão', pagina: 'estadao'},
-        {id: 1, paper: 'O Tempo', pagina: 'otempo'},
-        {id: 1, paper: 'O Globo', pagina: 'oglobo'}
-      ]
-    },
-
-    { nome : 'Argentina',
+  $scope.listaPaises = [
+    { nome : 'Brazil',
     conteudo : [
-      {id: 1, paper: 'Clarín', pagina: 'clarin'},
-      {id: 1, paper: 'La Nación', pagina: 'lanacion'},
-      {id: 1, paper: 'Los Andes', pagina: 'losandes'},
-      {id: 1, paper: 'La Voz', pagina: 'lavoz'},
+      {id: 1, paper: 'Folha', pagina: 'folha', pais: 'brasil'},
+      {id: 2, paper: 'Globo', pagina: 'g1', pais: 'brasil'},
+      {id: 3, paper: 'Estadão', pagina: 'estadao', pais: 'brasil'},
+      {id: 4, paper: 'O Tempo', pagina: 'otempo', pais: 'brasil'},
+      {id: 5, paper: 'O Globo', pagina: 'oglobo', pais: 'brasil'}
     ]
   },
 
-  { nome : 'Australia',
+  { nome : 'Argentina',
   conteudo : [
-    {id: 1, paper: 'The Age', pagina: 'theage'},
-    {id: 1, paper: 'Daily Telegraph', pagina: 'telegraph'},
-    {id: 1, paper: 'Courier Mail', pagina: 'couriermail'},
-    {id: 1, paper: 'The Sydney Morning Herald', pagina: 'sydneyherald'},
-    {id: 1, paper: 'Herald Sun', pagina: 'heraldsun'},
+    {id: 1, paper: 'Clarín', pagina: 'clarin'},
+    {id: 2, paper: 'La Nación', pagina: 'lanacion'},
+    {id: 3, paper: 'Los Andes', pagina: 'losandes'},
+    {id: 4, paper: 'La Voz', pagina: 'lavoz'},
   ]
+},
+
+{ nome : 'Australia',
+conteudo : [
+  {id: 1, paper: 'The Age', pagina: 'theage'},
+  {id: 2, paper: 'Daily Telegraph', pagina: 'telegraph'},
+  {id: 3, paper: 'Courier Mail', pagina: 'couriermail'},
+  {id: 4, paper: 'The Sydney Morning Herald', pagina: 'sydneyherald'},
+  {id: 5, paper: 'Herald Sun', pagina: 'heraldsun'},
+]
 },
 
 { nome : 'Canada',
 conteudo : [
   {id: 1, paper: 'Toronto Star', pagina: 'torontostar'},
-  {id: 1, paper: 'Vancouver Sun', pagina: 'vancouversun'},
-  {id: 1, paper: 'Metro News Canada', pagina: 'metronews'},
-  {id: 1, paper: 'National Post', pagina: 'nationalpost'},
-  {id: 1, paper: 'Ottawa Citizen', pagina: 'ottawacitizen'},
+  {id: 2, paper: 'Vancouver Sun', pagina: 'vancouversun'},
+  {id: 3, paper: 'Metro News Canada', pagina: 'metronews'},
+  {id: 4, paper: 'National Post', pagina: 'nationalpost'},
+  {id: 5, paper: 'Ottawa Citizen', pagina: 'ottawacitizen'},
 ]
 },
 
 { nome : 'Spain',
 conteudo : [
-  {id: 1, paper: 'El País', pagina: 'elpais'},
-  {id: 1, paper: 'El Mundo', pagina: 'elmundo'},
-  {id: 1, paper: 'La Vanguardia', pagina: 'lavanguardia'},
-  {id: 1, paper: 'ABC España', pagina: 'abcespana'},
-  {id: 1, paper: 'El Correo', pagina: 'elcorreo'},
+  {id: 1, paper: 'El País', pagina: 'elpais', pais: 'espanha'},
+  {id: 2, paper: 'El Mundo', pagina: 'elmundo', pais: 'espanha'},
+  {id: 3, paper: 'La Vanguardia', pagina: 'lavanguardia', pais: 'espanha'},
+  {id: 4, paper: 'ABC España', pagina: 'abcespana', pais: 'espanha'},
+  {id: 5, paper: 'El Correo', pagina: 'elcorreo', pais: 'espanha'},
 ]
 },
 
 { nome : 'United States of America',
 conteudo : [
-  {id: 1, paper: 'The New York Times', pagina: 'nyt'},
-  {id: 1, paper: 'USA Today', pagina: 'usatoday'},
-  {id: 1, paper: 'Washington Post', pagina: 'washpost'},
-  {id: 1, paper: 'New York Daily News', pagina: 'nydailynews'},
-  {id: 1, paper: 'The Wall Street Journal', pagina: 'twsj'},
+  {id: 1, paper: 'The New York Times', pagina: 'nyt', pais: 'eua'},
+  {id: 2, paper: 'USA Today', pagina: 'usatoday', pais: 'eua'},
+  {id: 3, paper: 'Washington Post', pagina: 'washpost', pais: 'eua'},
+  {id: 4, paper: 'New York Daily News', pagina: 'nydailynews', pais: 'eua'},
+  {id: 5, paper: 'The Wall Street Journal', pagina: 'twsj', pais: 'eua'},
 ]
 },
 
 { nome : 'France',
 conteudo : [
   {id: 1, paper: 'Le Monde', pagina: 'lemonde'},
-  {id: 1, paper: 'Le Figaro', pagina: 'lefigaro'},
-  {id: 1, paper: 'Le Parisien', pagina: 'leparisien'},
-  {id: 1, paper: 'Ouest France', pagina: 'ouestfrance'},
-  {id: 1, paper: "L'Express FR", pagina: 'lexpressfr'},
+  {id: 2, paper: 'Le Figaro', pagina: 'lefigaro'},
+  {id: 3, paper: 'Le Parisien', pagina: 'leparisien'},
+  {id: 4, paper: 'Ouest France', pagina: 'ouestfrance'},
+  {id: 5, paper: "L'Express FR", pagina: 'lexpressfr'},
 ]
 },
 
 { nome : 'Italy',
 conteudo : [
   {id: 1, paper: 'La Stampa', pagina: 'lastampa'},
-  {id: 1, paper: 'La Repubblica', pagina: 'larepubblica'},
-  {id: 1, paper: 'Corriere Della Sera', pagina: 'cds'},
-  {id: 1, paper: 'Il Sole 24 Ore', pagina: 'ilsole'},
-  {id: 1, paper: 'Il Messaggero', pagina: 'ilmessaggero'},
+  {id: 2, paper: 'La Repubblica', pagina: 'larepubblica'},
+  {id: 3, paper: 'Corriere Della Sera', pagina: 'cds'},
+  {id: 4, paper: 'Il Sole 24 Ore', pagina: 'ilsole'},
+  {id: 5, paper: 'Il Messaggero', pagina: 'ilmessaggero'},
 ]
 },
 
 { nome : 'Japan',
 conteudo : [
   {id: 1, paper: 'NHK Online', pagina: 'nhkonline'},
-  {id: 1, paper: 'The Japan Times', pagina: 'thejapantimes'},
-  {id: 1, paper: 'Asia Nikkei', pagina: 'asianikkei'},
-  {id: 1, paper: 'Japan Today', pagina: 'japantoday'},
-  {id: 1, paper: 'Asahi Shimbun', pagina: 'asahishimbun'},
+  {id: 2, paper: 'The Japan Times', pagina: 'thejapantimes'},
+  {id: 3, paper: 'Asia Nikkei', pagina: 'asianikkei'},
+  {id: 4, paper: 'Japan Today', pagina: 'japantoday'},
+  {id: 5, paper: 'Asahi Shimbun', pagina: 'asahishimbun'},
 ]
 },
 
 { nome : 'Mexico',
 conteudo : [
   {id: 1, paper: 'La Jornada', pagina: 'lajornada'},
-  {id: 1, paper: 'Reforma', pagina: 'reforma'},
-  {id: 1, paper: 'El Universal', pagina: 'eluniversalmx'},
+  {id: 2, paper: 'Reforma', pagina: 'reforma'},
+  {id: 3, paper: 'El Universal', pagina: 'eluniversalmx'},
 ]
 },
 
 { nome : 'United Kingdom',
 conteudo : [
   {id: 1, paper: 'The Daily Mail UK', pagina: 'tdmuk'},
-  {id: 1, paper: 'Metro UK', pagina: 'metrouk'},
-  {id: 1, paper: 'BBC', pagina: 'bbc'},
-  {id: 1, paper: 'The Guardian', pagina: 'theguardian'},
-  {id: 1, paper: 'The Independent', pagina: 'theindependent'},
+  {id: 2, paper: 'Metro UK', pagina: 'metrouk'},
+  {id: 3, paper: 'BBC', pagina: 'bbc'},
+  {id: 4, paper: 'The Guardian', pagina: 'theguardian'},
+  {id: 5, paper: 'The Independent', pagina: 'theindependent'},
 ]
 },
 
 { nome : 'Venezuela',
 conteudo : [{id: 1, paper: 'La Patilla', pagina: 'lapatilla'},
-{id: 1, paper: 'El Universal', pagina: 'eluniversal'},]
+{id: 2, paper: 'El Universal', pagina: 'eluniversal'},]
+},
+
+{ nome : 'India',
+conteudo : []
 }
 ]
 
-for(var i = 0; i <= $scope.listaPaises.length-1; i++){
-  if($scope.listaPaises[i].nome == $scope.clickedCountry.properties.name){
-    $scope.jornaisPaisClicado = $scope.listaPaises[i].conteudo;
-  }
-  // if (!$scope.listaPaises[i].conteudo == []) {
-  //   return $scope.jornaisPaisClicado;
-  // }
+function openNavMapa() {
+  document.getElementById("sidenavMapa").style.width = "800px";
+  document.getElementById("pushMapa").style.marginLeft = "800px";
 }
 
+function countryClick(feature, country, event) {
+  country = country.feature;
 
-
-$scope.g1 = [];
-$http.get('http://174.138.76.133:3000/brasil/g1').success(function(response){
-  $scope.g1 = response;
-});
-
-$scope.folha = [];
-$http.get('http://174.138.76.133:3000/brasil/folha').success(function(response){
-  $scope.folha = response;
-});
-
-$scope.estadao = [];
-$http.get('http://174.138.76.133:3000/brasil/estadao').success(function(response){
-  $scope.estadao = response;
-});
-
-$scope.otempo = [];
-$http.get('http://174.138.76.133:3000/brasil/g1').success(function(response){
-  $scope.otempo = response;
-});
-
-$scope.oglobo = [];
-$http.get('http://174.138.76.133:3000/brasil/g1').success(function(response){
-  $scope.oglobo = response;
-});
-
-$interval(function(){
-  $scope.listaJornais = [];
-  $scope.listaJornais[0] = {nomeJornal : "g1", jornal : $scope.g1};
-  $scope.listaJornais[1] = {nomeJornal : "folha", jornal : $scope.folha};
-  $scope.listaJornais[2] = {nomeJornal : "estadao", jornal : $scope.estadao};
-  $scope.listaJornais[3] = {nomeJornal : "otempo", jornal : $scope.otempo};
-  $scope.listaJornais[4] = {nomeJornal : "oglobo", jornal : $scope.oglobo};
-
-  var buscar = function(nomePais) {
-    for (var i = 0; i < $scope.listaJornais.length; i++) {
-      if ($scope.listaJornais[i].nomeJornal == nomePais) {
-        return $scope.listaJornais[i].jornal;
-      }
-    }
-    return null;
+  if($scope.clickedCountry){
+    $scope.noticias = [];
+    $scope.jornaisPaisClicado = [];
+    $scope.clickedCountry = country;
   }
 
-  $scope.selecionado = buscar($scope.jornalSelecionado);
+  $scope.clickedCountry = country;
 
-}, 1000, 1);
+  for(var i = 0; i <= $scope.listaPaises.length-1; i++){
+    if($scope.listaPaises[i].nome == $scope.clickedCountry.properties.name){
+      $scope.jornaisPaisClicado = $scope.listaPaises[i].conteudo;
+    }
+  }
 
+  $scope.submit = function(item) {
+    $http({
+      method: 'GET',
+      url: 'http://174.138.76.133:3000/'+item.pais+'/'+item.pagina
+    }).then(function successCallback(response) {
+      // console.log(item);
+      console.log(response);
+      $scope.noticias = response.data;
+      console.log($scope.noticias);
+    });
+  }
+
+  //Recuperando data e dias da semana
+  $scope.dias = [
+    {dia: 0, nome: 'Domingo'},
+    {dia: 1, nome: 'Segunda-feira'},
+    {dia: 2, nome: 'Terça-feira'},
+    {dia: 3, nome: 'Quarta-feira'},
+    {dia: 4, nome: 'Quinta-feira'},
+    {dia: 5, nome: 'Sexta-feira'},
+    {dia: 6, nome: 'Sábado-feira'}
+  ]
+
+  $scope.hoje = new Date().getUTCDay(); // 0(Sunday) to 6(Saturday).
+  $scope.dia = new Date().getUTCDate();
+  $scope.mes = new Date().getUTCMonth();
+  $scope.ano = new Date().getUTCFullYear();
+
+  for(var i = 0; i <= $scope.dias.length-1; i++){
+    if($scope.dias[i].dia == $scope.hoje){
+      $scope.diaSemana = $scope.dias[i].nome;
+    }
+  }
+
+
+  //$scope.jornalClicado = function() {
+
+  // $interval(function(){
+  //   $scope.listaJornais = [];
+  //   $scope.listaJornais[0] = {nomeJornal : "g1", jornal : $scope.g1};
+  //   $scope.listaJornais[1] = {nomeJornal : "folha", jornal : $scope.folha};
+  //   $scope.listaJornais[2] = {nomeJornal : "estadao", jornal : $scope.estadao};
+  //   $scope.listaJornais[3] = {nomeJornal : "otempo", jornal : $scope.otempo};
+  //   $scope.listaJornais[4] = {nomeJornal : "oglobo", jornal : $scope.oglobo};
+  //
+  //   console.log(jornalClicado());
+  //
+  //   var buscar = function(nomePais) {
+  //     for (var i = 0; i < $scope.listaJornais.length; i++) {
+  //       if ($scope.listaJornais[i].nomeJornal == nomePais) {
+  //         return $scope.listaJornais[i].jornal;
+  //       }
+  //     }
+  //     return null;
+  //   }
+  //
+  //   $scope.selecionado = buscar($scope.jornalSelecionado);
+  //
+  // }, 1000, 1);
+  //}
+
+  // $scope.abrirNoticia = function(noticia) {
+  //   //botar variável que vai receber o noticia.link
+  //   // $scope.linkNoticia = $scope.noticia.link;
+  //   document.getElementById("lerNoticia").innerHTML='<iframe src="http://www.google.com/custom?q=&btnG=Search" style="width: 100%; height: 1000px; padding: 0px;"></iframe>';
+  // }
+  // C:/Users/Guilherme/Desktop/Bootcamp/Projetos/netflix/index.html
 }
 
 // Get a country paint color from the continents array of colors
@@ -283,9 +276,6 @@ function countryMouseover(feature, leafletEvent) {
   });
   layer.bringToFront();
   $scope.selectedCountry = feature;
-  // $scope.clickedCountry = feature;
-  // console.log($scope.selectedCountry.properties.name);
-  // console.log($scope.selectedCountry);
 }
 
 // Get the countries data from a JSON
@@ -316,59 +306,165 @@ $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-direct
   //   })
   // })
 
+
+  // var paisSelect = function(){
   //
-  // if($scope.clickedContry){
-  //   $scope.listaPaises = [
-  //     { nome : 'Brazil',
-  //     conteudo : [
-  //       {id: 1, paper: 'Folha', pagina: 'folha'},
-  //       {id: 1, paper: 'Globo', pagina: 'g1'},
-  //       {id: 1, paper: 'Estadão', pagina: 'estadao'},
-  //       {id: 1, paper: 'O Tempo', pagina: 'otempo'},
-  //       {id: 1, paper: 'O Globo', pagina: 'oglobo'}
-  //     ]}
-  //   ]
   // }
-
-
-
-  var paisSelect = function(){
-
-  }
-
-  var buscar = function(pagina) {
-    for (var i = 0; i < listaPaises.length; i++) {
-      if (listaPaises[i].nome == pagina) {
-        return listaPaises[i];
-      }
-    }
-    return null;
-  }
+  //
+  // var buscar = function(pagina) {
+  //   for (var i = 0; i < listaPaises.length; i++) {
+  //     if (listaPaises[i].nome == pagina) {
+  //       return listaPaises[i];
+  //     }
+  //   }
+  //   return null;
+  // }
 
 });
 }]);
 
 // Controller do index/Home
-app.controller('homeCtrl', function($scope) {
-  // $scope.index = [
-  //   {id: 1, title: 'Home'},
-  //   {id: 2,
-  //     title: 'Login',
-  //     submenu:[
-  //       'xablau',
-  //       'xpto'
-  //     ]},
-  //     {id: 3,
-  //       title: 'Personalizar',
-  //       submenu:[
-  //         'bla bla bla',
-  //         'ble ble ble'
-  //       ]
-  //     },
-  //     {id: 4, title: 'Logout'}
-  //   ];
+// app.controller('homeCtrl', function($scope) {
+// $scope.index = [
+//   {id: 1, title: 'Home'},
+//   {id: 2,
+//     title: 'Login',
+//     submenu:[
+//       'xablau',
+//       'xpto'
+//     ]},
+//     {id: 3,
+//       title: 'Personalizar',
+//       submenu:[
+//         'bla bla bla',
+//         'ble ble ble'
+//       ]
+//     },
+//     {id: 4, title: 'Logout'}
+//   ];
 
-  // $scope.ativarSubmenu = function(item){
-  //   $scope.submenuAtivo = item.submenu;
-  // }
-});
+// $scope.ativarSubmenu = function(item){
+//   $scope.submenuAtivo = item.submenu;
+// }
+// });
+// app.controller('homeCtrl', function($scope) {
+//
+//   $scope.listaPaises = [
+//     { nome : 'Brazil',
+//     conteudo : [
+//       {id: 1, paper: 'Folha', pagina: 'folha', pais: 'brasil'},
+//       {id: 2, paper: 'Globo', pagina: 'g1', pais: 'brasil'},
+//       {id: 3, paper: 'Estadão', pagina: 'estadao', pais: 'brasil'},
+//       {id: 4, paper: 'O Tempo', pagina: 'otempo', pais: 'brasil'},
+//       {id: 5, paper: 'O Globo', pagina: 'oglobo', pais: 'brasil'}
+//     ]
+//   },
+//
+//   { nome : 'Argentina',
+//   conteudo : [
+//     {id: 1, paper: 'Clarín', pagina: 'clarin'},
+//     {id: 2, paper: 'La Nación', pagina: 'lanacion'},
+//     {id: 3, paper: 'Los Andes', pagina: 'losandes'},
+//     {id: 4, paper: 'La Voz', pagina: 'lavoz'},
+//   ]
+// },
+//
+// { nome : 'Australia',
+// conteudo : [
+//   {id: 1, paper: 'The Age', pagina: 'theage'},
+//   {id: 2, paper: 'Daily Telegraph', pagina: 'telegraph'},
+//   {id: 3, paper: 'Courier Mail', pagina: 'couriermail'},
+//   {id: 4, paper: 'The Sydney Morning Herald', pagina: 'sydneyherald'},
+//   {id: 5, paper: 'Herald Sun', pagina: 'heraldsun'},
+// ]
+// },
+//
+// { nome : 'Canada',
+// conteudo : [
+// {id: 1, paper: 'Toronto Star', pagina: 'torontostar'},
+// {id: 2, paper: 'Vancouver Sun', pagina: 'vancouversun'},
+// {id: 3, paper: 'Metro News Canada', pagina: 'metronews'},
+// {id: 4, paper: 'National Post', pagina: 'nationalpost'},
+// {id: 5, paper: 'Ottawa Citizen', pagina: 'ottawacitizen'},
+// ]
+// },
+//
+// { nome : 'Spain',
+// conteudo : [
+// {id: 1, paper: 'El País', pagina: 'elpais', pais: 'espanha'},
+// {id: 2, paper: 'El Mundo', pagina: 'elmundo', pais: 'espanha'},
+// {id: 3, paper: 'La Vanguardia', pagina: 'lavanguardia', pais: 'espanha'},
+// {id: 4, paper: 'ABC España', pagina: 'abcespana', pais: 'espanha'},
+// {id: 5, paper: 'El Correo', pagina: 'elcorreo', pais: 'espanha'},
+// ]
+// },
+//
+// { nome : 'United States of America',
+// conteudo : [
+// {id: 1, paper: 'The New York Times', pagina: 'nyt', pais: 'eua'},
+// {id: 2, paper: 'USA Today', pagina: 'usatoday', pais: 'eua'},
+// {id: 3, paper: 'Washington Post', pagina: 'washpost', pais: 'eua'},
+// {id: 4, paper: 'New York Daily News', pagina: 'nydailynews', pais: 'eua'},
+// {id: 5, paper: 'The Wall Street Journal', pagina: 'twsj', pais: 'eua'},
+// ]
+// },
+//
+// { nome : 'France',
+// conteudo : [
+// {id: 1, paper: 'Le Monde', pagina: 'lemonde'},
+// {id: 2, paper: 'Le Figaro', pagina: 'lefigaro'},
+// {id: 3, paper: 'Le Parisien', pagina: 'leparisien'},
+// {id: 4, paper: 'Ouest France', pagina: 'ouestfrance'},
+// {id: 5, paper: "L'Express FR", pagina: 'lexpressfr'},
+// ]
+// },
+//
+// { nome : 'Italy',
+// conteudo : [
+// {id: 1, paper: 'La Stampa', pagina: 'lastampa'},
+// {id: 2, paper: 'La Repubblica', pagina: 'larepubblica'},
+// {id: 3, paper: 'Corriere Della Sera', pagina: 'cds'},
+// {id: 4, paper: 'Il Sole 24 Ore', pagina: 'ilsole'},
+// {id: 5, paper: 'Il Messaggero', pagina: 'ilmessaggero'},
+// ]
+// },
+//
+// { nome : 'Japan',
+// conteudo : [
+// {id: 1, paper: 'NHK Online', pagina: 'nhkonline'},
+// {id: 2, paper: 'The Japan Times', pagina: 'thejapantimes'},
+// {id: 3, paper: 'Asia Nikkei', pagina: 'asianikkei'},
+// {id: 4, paper: 'Japan Today', pagina: 'japantoday'},
+// {id: 5, paper: 'Asahi Shimbun', pagina: 'asahishimbun'},
+// ]
+// },
+//
+// { nome : 'Mexico',
+// conteudo : [
+// {id: 1, paper: 'La Jornada', pagina: 'lajornada'},
+// {id: 2, paper: 'Reforma', pagina: 'reforma'},
+// {id: 3, paper: 'El Universal', pagina: 'eluniversalmx'},
+// ]
+// },
+//
+// { nome : 'United Kingdom',
+// conteudo : [
+// {id: 1, paper: 'The Daily Mail UK', pagina: 'tdmuk'},
+// {id: 2, paper: 'Metro UK', pagina: 'metrouk'},
+// {id: 3, paper: 'BBC', pagina: 'bbc'},
+// {id: 4, paper: 'The Guardian', pagina: 'theguardian'},
+// {id: 5, paper: 'The Independent', pagina: 'theindependent'},
+// ]
+// },
+//
+// { nome : 'Venezuela',
+// conteudo : [{id: 1, paper: 'La Patilla', pagina: 'lapatilla'},
+// {id: 2, paper: 'El Universal', pagina: 'eluniversal'},]
+// },
+//
+// { nome : 'India',
+// conteudo : []
+// }
+// ]
+//
+// });
