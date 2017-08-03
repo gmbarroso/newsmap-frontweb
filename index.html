@@ -2,11 +2,11 @@
 <head>
   <title>NewsMap</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script src="./node_modules/angular/angular.min.js"></script>
   <script src="./node_modules/leaflet/dist/leaflet.js"></script>
   <script src="./node_modules/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
   <link rel="stylesheet" href="./node_modules/leaflet/dist/leaflet.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/lafeber/world-flags-sprite/master/stylesheets/flags32.css" /> -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/sideMenuCad.css">
@@ -16,36 +16,45 @@
   <script src="./js/sideMenuCad.js"></script>
   <script src="./js/sideMenuLgn.js"></script>
   <script src="./js/sideMenuMapa.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cloud.github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+
 </head>
 
 <body ng-controller="MixedGeoJSONEventsWithIDController">
   <!-- div menu do lado esquerdo -->
   <div class="col-sm-2 coluna-esquerda">
-    <img class="logo" src="./img/logo3.png" alt="">
+    <img class="logo" src="./img/logo-lineless.png" alt="">
+
+    <!-- <div class="welcome">
+      <span>Bem vindo, Olávo Guimarães</span>
+    </div> -->
+
     <div class="btns">
-      <button class="btn btn-default buttons">Home</button>
-      <button class="btn btn-default buttons" onclick="abrirLgn()">Login</button>
-      <button class="btn btn-default buttons" onclick="abrirCad()">Cadastrar-se</button>
-      <button class="btn btn-default buttons">Logout</button>
+      <button class="btn btn-default buttons" onClick="window.location.reload()">Home</button>
+      <button class="btn btn-default buttons" ng-hide="user" onclick="abrirLgn()">Login</button>
+      <button class="btn btn-default buttons" ng-hide="user" onclick="abrirCad()">Cadastrar-se</button>
+      <button class="btn btn-default buttons" ng-show="user">Logout</button>
     </div>
 
     <!-- sidemenu Lgn-->
     <div id="sidenavLgn" class="sideLgn">
-      <a href="javascript:void(0)" class="closebtnLgn" onclick="fecharLgn()">&times;</a>
-      <form class="col-sm-12">
-        <h4>Entre com seu e-mail e senha</h4>
+      <!-- <a href="javascript:void(0)" class="closebtnLgn" onclick="fecharLgn()">&times;</a> -->
+      <form class="col-sm-12 areaLgn" ng-submit="logar()">
+        <h4 class="textlgn">Entre com seu e-mail e senha</h4>
         <div class="col-sm-12 divLgn">
-          <div class="form-group formLgn">
+          <div class="form-group formLgnemail">
             <label for="exampleInputEmail1"></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+            <input type="email" class="form-control" id="exampleInputEmail1" ng-model="lgn.email" placeholder="Email">
           </div>
-          <div class="form-group formLgn">
+          <div class="form-group formLgnpass">
             <label for="exampleInputPassword1"></label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <input type="password" class="form-control" id="exampleInputPassword1" ng-model="lgn.senha" placeholder="Password">
           </div>
-          <button type="button" class="btn btn-default btn-block btnentrar" onclick="fecharLgn()">Entrar</button>
+          <button type="submit" class="btn btn-default btn-block btnentrar" onclick="fecharLgn()">Entrar</button>
           <button type="button" class="btn btn-primary btn-block fb" onclick="fecharLgn()">Entre com facebook</button>
+          <!-- <a class="voltar" href="jacascript:void(0)" onclick="fecharLgn()">&#8617;</a> -->
+          <img id="atras" src="./img/seta-branca.png" onclick="fecharLgn()">
         </div>
       </form>
     </div>
@@ -53,30 +62,30 @@
 
   <!-- Sidemenu do Cadastro -->
   <div id="sidenavCad" class="sideCad">
-    <a href="javascript:void(0)" class="closebtnCad" onclick="fecharCad()">&times;</a>
-    <form class="col-sm-12">
-      <h4>Registro de usuário</h4>
+    <!-- <a href="javascript:void(0)" class="closebtnCad" onclick="fecharCad()">&times;</a> -->
+    <h4 class="textCad">Cadastro</h4>
+    <form class="col-sm-12" ng-submit="cadastrar()">
       <div class="col-sm-12 divCad">
         <div class="form-group formcad">
-          <label for="exampleInputName1">Nome</label>
-          <input type="name" class="form-control" id="exampleInputName1" placeholder="Nome">
+          <label for="exampleInputName1"></label>
+          <input type="text" class="form-control" id="exampleInputName1" ng-model="cad.nome" placeholder="Nome">
         </div>
         <div class="form-group formcad">
-          <label for="exampleInputEmail1">E-mail</label>
-          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          <label for="exampleInputEmail1"></label>
+          <input type="email" class="form-control" id="exampleInputEmail1" ng-model="cad.email" placeholder="Email">
         </div>
         <div class="form-group formcad">
-          <label for="exampleInputPassword1">Senha</label>
-          <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+          <label for="exampleInputPassword1"></label>
+          <input type="password" class="form-control" id="exampleInputPassword1" ng-model="cad.senha" placeholder="Password">
         </div>
         <div class="form-group formcad">
-          <label for="exampleInputPassword1">Digite novamente</label>
+          <label for="exampleInputPassword1"></label>
           <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Re-type password">
         </div>
       </div>
       <div class="divFav">
-        <form>
-          <h4>Preferências</h4>
+        <div class="fromPref">
+          <h4 class="preferencias">Preferências</h4>
           <div class="input">
             <input id="dropPais" type="checkbox" name="paises" value="paises" ng-click="showPaises = !showPaises">
             <span>Filtrar por país</span>
@@ -84,18 +93,19 @@
           <select ng-show="showPaises" ng-model="nomeDoPais" ng-options="pais.nome for pais in listaPaises">
             <option value="">Nenhum</option>
           </select>
-        </form>
-        <form ng-show="nomeDoPais">
-            <span>Filtrar por jornal</span>
-          <select ng-model="nomeDoJornal" ng-options="pais.paper for pais in nomeDoPais.conteudo">
+        </div>
+        <div class="fromPref" ng-show="nomeDoPais">
+          <span>Filtrar por jornal</span>
+          <select class="selj" ng-model="nomeDoJornal" ng-options="pais.paper for pais in nomeDoPais.conteudo">
             <option value="">Nenhum</option>
           </select>
-          <span>{{listaPaises.nome}}</span>
-        </form>
+        </div>
       </div>
-      <div class="col-sm-12">
-        <button type="button" class="btn btn-default btn-block registrar" onclick="fecharCad()">Registrar</button>
+      <div class="col-sm-12 registros">
+        <button type="submit" class="btn btn-default btn-block registrar" onclick="fecharCad()">Registrar</button>
         <button type="button" class="btn btn-primary btn-block fb" onclick="fecharCad()">Registrar com facebook</button>
+        <!-- <a class="voltar" href="jacascript:void(0)" onclick="fecharCad()">&#8617;</a> -->
+        <img id="atras" src="./img/seta-branca.png" onclick="fecharCad()">
       </div>
     </form>
   </div>
@@ -106,35 +116,39 @@
     <leaflet id="myMap" defaults="defaults" onclick="countryClick()" lf-center="center" events="events" legend="" geojson="geojson" class="class=col-sm-9"></leaflet>
     <!-- espaço que carrega os nomes dos países quando mousehover -->
     <div class="worldmap country f32">
-      <!-- <div ng-show="selectedCountry" class="flag" ng-class="countries[selectedCountry.id]['alpha-2']|lowercase"> -->
-      </div>
-      {{ selectedCountry.properties.name || 'No country'}}
+      <div ng-show="selectedCountry" class="flag" ng-class="agoraVai.toLowerCase()">
     </div>
-    <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
-    <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
-    <h1>World map flags example</h1> -->
+    {{ selectedCountry.properties.name || 'No country'}}
+  </div>
+  <!-- espaço que carrega o ponto inicial central do mapa numa string dentro de uma box -->
+  <!-- <div class="worldmap box">Map center: [ lat: {{ center.lat | number:4 }}, lng: {{ center.lng | number:4 }} ]</div>
+  <h1>World map flags example</h1> -->
 
-    <!-- div da sidemenu ativada quando click no país -->
-    <div id="sidenavMapa" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a>
-      <div>
-        <div ng-show="clickedCountry" class="flag" ng-class="countries[clickedCountry.id]['alpha-2']|lowercase">
-        </div>
-        {{clickedCountry.properties.name || 'No country'}}
-      </div>
-      <div class="col-sm-4 news">
-        <span>{{diaSemana + ', ' + dia + '/' + mes + '/' + ano}}</span><br>
-        <h3 class="selecionar">Selecione um jornal</h3>
-        <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="submit(item)">
-          <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
-        </button>
-      </div>
-      <div class="col-sm-4 feed">
-        <div class="item-noticias" ng-repeat="noticia in noticias" target="_blank">
-          <a href="{{noticia.link}}" target="_blank" id="noticia-title" ng-click="abrirNoticia(noticia)">{{noticia.titulo}}</a>
-          <h4 class="noticia-desc">{{noticia.desc}}</h4>
+  <!-- div da sidemenu ativada quando click no país -->
+  <div id="sidenavMapa" class="sidenav">
+    <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeNavMapa()">&times;</a> -->
+
+    <div class="col-sm-4 news">
+      <div class="f32">
+        <div ng-show="clickedCountry" class="flag" ng-class="agoraFoi.toLowerCase()">
         </div>
       </div>
+
+      <h4>{{clickedCountry.properties.name || 'No country'}}</h4>
+      <h5 class="dia">{{diaSemana + ', ' + dia + '/' + mes + '/' + ano}}</h5>
+      <h3 class="selecionar">Selecione um jornal</h3>
+      <button ng-repeat="item in jornaisPaisClicado" class="jornal button-{{item.pagina}}" ng-click="submit(item)">
+        <img ng-src="img/icons/{{item.pagina}}.png" alt="{{item.paper}}">
+      </button>
+      <!-- <a class="voltarmapa" href="jacascript:void(0)" onclick="closeNavMapa()">&#8617;</a> -->
+      <img id="atrasMapa" src="./img/seta-branca.png" onclick="closeNavMapa()">
+    </div>
+    <div class="col-sm-4 feed">
+      <div class="item-noticias" ng-repeat="noticia in noticias" target="_blank">
+        <a href="{{noticia.link}}" target="_blank" id="noticia-title" ng-click="abrirNoticia(noticia)">{{noticia.titulo}}</a>
+        <h4 class="noticia-desc">{{noticia.desc}}</h4>
+      </div>
+    </div>
   </div>
 </div>
 </body>

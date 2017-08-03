@@ -1,6 +1,6 @@
 function abrirCad() {
-    document.getElementById("sidenavCad").style.width = "275px";
-    document.getElementById("pushMapa").style.marginLeft = "275px";
+    document.getElementById("sidenavCad").style.width = "375px";
+    document.getElementById("pushMapa").style.marginLeft = "375px";
 }
 
 function fecharCad() {

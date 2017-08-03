@@ -1,8 +1,8 @@
 body, html {
   height: 100%;
   background-color: #1D1D1B;
-  font-family: 'Merriweather', serif;
-    color: #eaedf2;
+  font-family: 'Nunito', sans-serif;
+  color: #eaedf2;
 }
 
 .worldmap {
@@ -57,8 +57,16 @@ div.worldmap.country {
 div.worldmap.country.f32 {
   opacity: 1;
   color: black;
+  font-size: 18px;
+}
 
-
+.f32 .flag {
+    display: inline-block;
+    height: 32px;
+    width: 32px;
+    vertical-align: text-top;
+    line-height: 32px;
+    background: url(flags32.png) no-repeat;
 }
 
 .angular-leaflet-map {
@@ -74,6 +82,8 @@ div.worldmap.country.f32 {
   background-color: #1D1D1B;
   /*width: 250px;*/
   padding: 0px;
+  margin-top: 35px;
+
 }
 
 .logo {
@@ -83,6 +93,20 @@ div.worldmap.country.f32 {
 .coluna-esquerda h1 {
   text-align: center;
   color: #eaedf2;
+}
+
+.welcome {
+  margin-top: 35px;
+  margin-bottom: -30px;
+}
+
+.btns {
+  margin-top: 35px;
+}
+
+.selecionar {
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 .buttons {
@@ -110,55 +134,109 @@ div.worldmap.country.f32 {
 
 }
 
+#atras {
+  margin-top: 25px;
+  margin-left: 5px;
+  width: 10px;
+  height: 20px;
+}
+
+#atras:hover {
+  margin-top: 25px;
+  margin-left: 5px;
+  width: 10px;
+  height: 20px;
+  background-image: url(./img/seta-azul.png);
+  cursor: pointer;
+}
+
+#atrasMapa{
+  width: 10px;
+  height: 40px;
+  text-align: left;
+  margin: 5px;
+}
+
+#atrasMapa:hover {
+  width: 10px;
+  height: 40px;
+  /*background-image: url(./img/seta-azul.png);*/
+  cursor: pointer;
+}
+
 select {
   width: 100%;
 }
 
-button.jornal.button-g1{
+button.jornal.button-G1{
   background-color: #a3101a;
 }
 
-button.jornal.button-lavanguardia{
+button.jornal.button-la_vanguardia{
   background-color: #1b2f6d;
 }
 
-button.jornal.button-otempo{
+.jornal.button-la_vanguardia img{
+  height: 47px;
+}
+
+.jornal.button-wallstreet img{
+  height: 42px;
+}
+
+.jornal.button-the_age img{
+  height: 47px;
+}
+
+.jornal.button-the_sydney_morning_herald img{
+  height: 46px;
+}
+
+.jornal.button-corriere_della_sera img{
+  height: 44px;
+}
+
+button.jornal.button-O.Tempo{
   background-color: #1b4623;
 }
 
-button.jornal.button-oglobo{
+button.jornal.button-O.Globo{
   background-color: #05509a;
 }
 
-button.jornal.button-lavoz{
+button.jornal.button-la_voz{
   background-color: #05509a;
 }
 
-button.jornal.button-nationalpost{
+button.jornal.button-national_post{
   background-color: #fed458;
 }
 
-button.jornal.button-metronews{
+button.jornal.button-metro_news_canada{
   background-color: #04803f;
 }
 
-button.jornal.button-torontostar{
+button.jornal.button-toronto_star{
   background-color: #236eb5;
 }
 
-button.jornal.button-lefigaro{
+.jornal.button-toronto_star img{
+  height: 47px;
+}
+
+button.jornal.button-figaro{
   background-color: #2970B7;
 }
 
-button.jornal.button-leparisien{
+button.jornal.button-le_parisien{
   background-color: #379AD5;
 }
 
-button.jornal.button-lexpressfr{
+button.jornal.button-lexpress{
   background-color: #E51B29;
 }
 
-button.jornal.button-ilsole{
+button.jornal.button-ilsole24ore{
   background-color: #FDE1C9;
 }
 
@@ -195,4 +273,8 @@ button.jornal.button-reforma{
 iframe {
   width: 100%;
   height: 300px;
+}
+
+.news {
+  text-align: left;
 }

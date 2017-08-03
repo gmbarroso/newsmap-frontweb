@@ -1,40 +1,49 @@
+.paisNome  {
+  text-align: left;
+}
+
+.dia  {
+  text-align: left;
+}
+
 .sidenav {
-background-color: #1D1D1B;
-height: 100%;
-width: 0;
-position: fixed;
-z-index: 1;
-top: 0;
-left: 0;
-overflow-x: hidden;
-transition: 0.5s;
-padding-top: 60px;
+  background-color: #1D1D1B;
+  font-family: 'Nunito', sans-serif;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  color: white;
+  transition: 0.5s;
+  padding-top: 60px;
 }
 
 .sidenav a {
-padding: 8px 8px 8px 32px;
-text-decoration: none;
-font-size: 25px;
-color: #eaedf2;
-display: block;
-transition: 0.3s;
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #eaedf2;
+  display: block;
+  transition: 0.3s;
 }
 
 .sidenav a:hover, .offcanvas a:focus{
-color: #233a60;
+  color: #233a60;
 }
 
 .sidenav .closebtn {
-position: absolute;
-top: -15;
-right: 2px;
-font-size: 36px;
-margin-left: 2px;
+  position: absolute;
+  top: -15;
+  right: 2px;
+  font-size: 36px;
+  margin-left: 2px;
 }
 
 .news {
-width: 300px;
-border-right: 1px solid #eaedf2;
+  width: 300px;
 }
 
 .news img{
@@ -51,10 +60,14 @@ border-right: 1px solid #eaedf2;
   margin-bottom: 10px;
 }
 
+.voltarmapa {
+  text-align: left;
+  padding: 0px;
+}
+
 .feed {
   width: 350px;
   height: 465px;
-  border-right: 1px solid #eaedf2;
   text-align: center;
 }
 
@@ -63,12 +76,11 @@ border-right: 1px solid #eaedf2;
   width: 500px;
 }
 
-
 #pushMapa {
-transition: margin-left .5s;
+  transition: margin-left .5s;
 }
 
 @media screen and (max-height: 450px) {
-.sidenav {padding-top: 15px;}
-.sidenav a {font-size: 18px;}
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }

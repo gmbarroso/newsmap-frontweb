@@ -1,6 +1,6 @@
 function abrirLgn() {
-    document.getElementById("sidenavLgn").style.width = "275px";
-    document.getElementById("pushMapa").style.marginLeft = "275px";
+    document.getElementById("sidenavLgn").style.width = "375px";
+    document.getElementById("pushMapa").style.marginLeft = "375px";
 }
 
 function fecharLgn() {

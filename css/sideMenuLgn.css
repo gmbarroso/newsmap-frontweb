@@ -1,10 +1,13 @@
-h3 {
+.textlgn {
   text-align: center;
-  margin-bottom: 50px;
 }
 
-.formlgn {
-  padding-bottom: 10px;
+.formLgnemail {
+  padding-bottom: 5px;
+}
+
+.formLgnpass {
+  padding-bottom: 30px;
 }
 
 .divLgn {
@@ -12,16 +15,37 @@ h3 {
 }
 
 .btnentrar {
-  background-color: green;
   color: #eaedf2;
   border-color: green;
+  background-color: transparent;
+  padding-top: 5px;
+  border-width: 2px;
+}
+
+.btnentrar:hover {
+  border-color: green;
+  background-color: green;
+  color: #eaedf2;
 }
 
 .registrar {
   color: #eaedf2;
   border-color: green;
-  background-color: green;
+  background-color: transparent;
   padding-top: 5px;
+  border-width: 2px;
+  /*margin-top: 20px;*/
+}
+
+.registrar:hover {
+  border-color: green;
+  background-color: green;
+  color: #eaedf2;
+}
+
+.fb {
+  background-color: transparent;
+  border-width: 2px;
 }
 
 .sideLgn {
@@ -57,6 +81,10 @@ h3 {
   right: 2px;
   font-size: 36px;
   margin-left: 2px;
+}
+
+.voltar {
+  margin-left: -25px;
 }
 
 #sidenavLgn {

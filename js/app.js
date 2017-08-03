@@ -4,6 +4,9 @@ var app = angular.module("newsmap", ["leaflet-directive"]);
 // Controller do MAPA
 app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", function($scope, $http, $interval) {
 
+  //variável criada para alocar o usuário e utilizar no fim do código
+  $scope.user = null;
+
   $scope.$on("leafletDirectiveGeoJson.myMap.mouseover", function(ev, leafletPayload) {
     countryMouseover(leafletPayload.leafletObject.feature, leafletPayload.leafletEvent);
   });
@@ -38,80 +41,75 @@ app.controller('MixedGeoJSONEventsWithIDController', [ "$scope", "$http", functi
   $scope.listaPaises = [
     { nome : 'Brazil',
     conteudo : [
-      {id: 1, paper: 'Folha', pagina: 'folha', pais: 'brasil'},
-      {id: 2, paper: 'Globo', pagina: 'g1', pais: 'brasil'},
-      {id: 3, paper: 'Estadão', pagina: 'estadao', pais: 'brasil'},
-      {id: 4, paper: 'O Tempo', pagina: 'otempo', pais: 'brasil'},
-      {id: 5, paper: 'O Globo', pagina: 'oglobo', pais: 'brasil'}
+      {id: 1, paper: 'Folha', pagina: 'Folha de São Paulo', pais: 'Brasil'},
+      {id: 2, paper: 'Globo', pagina: 'G1', pais: 'Brasil'},
+      {id: 3, paper: 'Estadão', pagina: 'Estadão', pais: 'Brasil'},
+      {id: 4, paper: 'O Tempo', pagina: 'O Tempo', pais: 'Brasil'},
+      {id: 5, paper: 'O Globo', pagina: 'O Globo', pais: 'Brasil'}
     ]
   },
 
   { nome : 'Argentina',
   conteudo : [
-    {id: 1, paper: 'Clarín', pagina: 'clarin'},
-    {id: 2, paper: 'La Nación', pagina: 'lanacion'},
-    {id: 3, paper: 'Los Andes', pagina: 'losandes'},
-    {id: 4, paper: 'La Voz', pagina: 'lavoz'},
+    {id: 1, paper: 'Clarín', pagina: 'clarin', pais: 'Argentina'},
+    {id: 3, paper: 'Los Andes', pagina: 'los_andes', pais: 'Argentina'},
+    {id: 4, paper: 'La Voz', pagina: 'la_voz', pais: 'Argentina'}
   ]
 },
 
 { nome : 'Australia',
 conteudo : [
-  {id: 1, paper: 'The Age', pagina: 'theage'},
-  {id: 2, paper: 'Daily Telegraph', pagina: 'telegraph'},
-  {id: 3, paper: 'Courier Mail', pagina: 'couriermail'},
-  {id: 4, paper: 'The Sydney Morning Herald', pagina: 'sydneyherald'},
-  {id: 5, paper: 'Herald Sun', pagina: 'heraldsun'},
+  {id: 1, paper: 'The Age', pagina: 'the_age', pais: 'Australia'},
+  {id: 4, paper: 'The Sydney Morning Herald', pagina: 'the_sydney_morning_herald', pais: 'Australia'}
 ]
 },
 
 { nome : 'Canada',
 conteudo : [
-  {id: 1, paper: 'Toronto Star', pagina: 'torontostar'},
-  {id: 2, paper: 'Vancouver Sun', pagina: 'vancouversun'},
-  {id: 3, paper: 'Metro News Canada', pagina: 'metronews'},
-  {id: 4, paper: 'National Post', pagina: 'nationalpost'},
-  {id: 5, paper: 'Ottawa Citizen', pagina: 'ottawacitizen'},
+  {id: 1, paper: 'Toronto Star', pagina: 'toronto_star', pais: 'Canada'},
+  {id: 2, paper: 'Vancouver Sun', pagina: 'vancouver_sun', pais: 'Canada'},
+  {id: 3, paper: 'Metro News Canada', pagina: 'metro_news_canada', pais: 'Canada'},
+  {id: 4, paper: 'National Post', pagina: 'national_post', pais: 'Canada'},
+  {id: 5, paper: 'Ottawa Citizen', pagina: 'ottawa_citizen', pais: 'Canada'}
 ]
 },
 
 { nome : 'Spain',
 conteudo : [
-  {id: 1, paper: 'El País', pagina: 'elpais', pais: 'espanha'},
-  {id: 2, paper: 'El Mundo', pagina: 'elmundo', pais: 'espanha'},
-  {id: 3, paper: 'La Vanguardia', pagina: 'lavanguardia', pais: 'espanha'},
-  {id: 4, paper: 'ABC España', pagina: 'abcespana', pais: 'espanha'},
-  {id: 5, paper: 'El Correo', pagina: 'elcorreo', pais: 'espanha'},
+  {id: 1, paper: 'El País', pagina: 'el_pais', pais: 'Espanha'},
+  {id: 2, paper: 'El Mundo', pagina: 'el_mundo', pais: 'Espanha'},
+  {id: 3, paper: 'La Vanguardia', pagina: 'la_vanguardia', pais: 'Espanha'},
+  {id: 4, paper: 'ABC España', pagina: 'abc_espana', pais: 'Espanha'},
+  {id: 5, paper: 'El Correo', pagina: 'el_correo', pais: 'Espanha'}
 ]
 },
 
 { nome : 'United States of America',
 conteudo : [
-  {id: 1, paper: 'The New York Times', pagina: 'nyt', pais: 'eua'},
   {id: 2, paper: 'USA Today', pagina: 'usatoday', pais: 'eua'},
   {id: 3, paper: 'Washington Post', pagina: 'washpost', pais: 'eua'},
-  {id: 4, paper: 'New York Daily News', pagina: 'nydailynews', pais: 'eua'},
-  {id: 5, paper: 'The Wall Street Journal', pagina: 'twsj', pais: 'eua'},
+  {id: 4, paper: 'New York Daily News', pagina: 'nydaily', pais: 'eua'},
+  {id: 5, paper: 'The Wall Street Journal', pagina: 'wallstreet', pais: 'eua'}
 ]
 },
 
 { nome : 'France',
 conteudo : [
-  {id: 1, paper: 'Le Monde', pagina: 'lemonde'},
-  {id: 2, paper: 'Le Figaro', pagina: 'lefigaro'},
-  {id: 3, paper: 'Le Parisien', pagina: 'leparisien'},
-  {id: 4, paper: 'Ouest France', pagina: 'ouestfrance'},
-  {id: 5, paper: "L'Express FR", pagina: 'lexpressfr'},
+  {id: 1, paper: 'Le Monde', pagina: 'lemonde', pais: 'franca'},
+  {id: 2, paper: 'Le Figaro', pagina: 'figaro', pais: 'franca'},
+  {id: 3, paper: 'Le Parisien', pagina: 'le_parisien', pais: 'franca'},
+  {id: 4, paper: 'Ouest France', pagina: 'ouestfrance', pais: 'franca'},
+  {id: 5, paper: "L'Express FR", pagina: 'lexpress', pais: 'franca'}
 ]
 },
 
 { nome : 'Italy',
 conteudo : [
-  {id: 1, paper: 'La Stampa', pagina: 'lastampa'},
-  {id: 2, paper: 'La Repubblica', pagina: 'larepubblica'},
-  {id: 3, paper: 'Corriere Della Sera', pagina: 'cds'},
-  {id: 4, paper: 'Il Sole 24 Ore', pagina: 'ilsole'},
-  {id: 5, paper: 'Il Messaggero', pagina: 'ilmessaggero'},
+  {id: 1, paper: 'La Stampa', pagina: 'la_stampa', pais: 'Italia'},
+  {id: 2, paper: 'La Repubblica', pagina: 'larepubblica', pais: 'Italia'},
+  {id: 3, paper: 'Corriere Della Sera', pagina: 'corriere_della_sera', pais: 'Italia'},
+  {id: 4, paper: 'Il Sole 24 Ore', pagina: 'ilsole24ore', pais: 'Italia'},
+  {id: 5, paper: 'Il Messaggero', pagina: 'il_messaggero', pais: 'Italia'}
 ]
 },
 
@@ -121,41 +119,37 @@ conteudo : [
   {id: 2, paper: 'The Japan Times', pagina: 'thejapantimes'},
   {id: 3, paper: 'Asia Nikkei', pagina: 'asianikkei'},
   {id: 4, paper: 'Japan Today', pagina: 'japantoday'},
-  {id: 5, paper: 'Asahi Shimbun', pagina: 'asahishimbun'},
+  {id: 5, paper: 'Asahi Shimbun', pagina: 'asahishimbun'}
 ]
 },
 
 { nome : 'Mexico',
 conteudo : [
-  {id: 1, paper: 'La Jornada', pagina: 'lajornada'},
-  {id: 2, paper: 'Reforma', pagina: 'reforma'},
-  {id: 3, paper: 'El Universal', pagina: 'eluniversalmx'},
+  {id: 1, paper: 'La Jornada', pagina: 'la_jornada', pais: 'mexico'},
+  {id: 2, paper: 'Reforma', pagina: 'reforma', pais: 'mexico'},
+  {id: 3, paper: 'El Universal', pagina: 'el_universal', pais: 'mexico'}
 ]
 },
 
 { nome : 'United Kingdom',
 conteudo : [
-  {id: 1, paper: 'The Daily Mail UK', pagina: 'tdmuk'},
-  {id: 2, paper: 'Metro UK', pagina: 'metrouk'},
-  {id: 3, paper: 'BBC', pagina: 'bbc'},
-  {id: 4, paper: 'The Guardian', pagina: 'theguardian'},
-  {id: 5, paper: 'The Independent', pagina: 'theindependent'},
+  {id: 1, paper: 'The Daily Mail UK', pagina: 'thedailymailUK', pais: 'reinounido'},
+  {id: 2, paper: 'Metro UK', pagina: 'metro_uk', pais: 'reinounido'},
+  {id: 3, paper: 'BBC', pagina: 'bbc', pais: 'reinounido'},
+  {id: 4, paper: 'The Guardian', pagina: 'the_guardian', pais: 'reinounido'}
 ]
 },
 
 { nome : 'Venezuela',
 conteudo : [{id: 1, paper: 'La Patilla', pagina: 'lapatilla'},
-{id: 2, paper: 'El Universal', pagina: 'eluniversal'},]
-},
-
-{ nome : 'India',
-conteudo : []
+{id: 2, paper: 'El Universal', pagina: 'eluniversal'}
+]
 }
 ]
 
 function openNavMapa() {
-  document.getElementById("sidenavMapa").style.width = "800px";
-  document.getElementById("pushMapa").style.marginLeft = "800px";
+  document.getElementById("sidenavMapa").style.width = "700px";
+  document.getElementById("pushMapa").style.marginLeft = "700px";
 }
 
 function countryClick(feature, country, event) {
@@ -178,14 +172,15 @@ function countryClick(feature, country, event) {
   $scope.submit = function(item) {
     $http({
       method: 'GET',
-      url: 'http://174.138.76.133:3000/'+item.pais+'/'+item.pagina
+      url: 'http://174.138.76.133:3000/paises/'+item.pais+'/jornais/'+item.pagina+'/noticias'
     }).then(function successCallback(response) {
       // console.log(item);
-      console.log(response);
+      // console.log(response);
       $scope.noticias = response.data;
-      console.log($scope.noticias);
+      // console.log($scope.noticias);
     });
   }
+
 
   //Recuperando data e dias da semana
   $scope.dias = [
@@ -207,6 +202,25 @@ function countryClick(feature, country, event) {
     if($scope.dias[i].dia == $scope.hoje){
       $scope.diaSemana = $scope.dias[i].nome;
     }
+  }
+
+  //Refresh page no botão Home
+  function refreshPage(){
+    window.location.reload();
+  }
+
+  if ($scope.clickedCountry.id) {
+
+    var bandeira = $scope.clickedCountry.id;
+    var vetorFinal = [];
+    for(i = 0; i < bandeira.length - 1; i++){
+      vetorFinal.push(bandeira[i]);
+    }
+    $scope.agoraFoi = "";
+    $scope.agoraFoi += vetorFinal[0];
+    $scope.agoraFoi += vetorFinal[1];
+    // console.log($scope.agoraVai.toLowerCase());
+    bandeira.toLowerCase();
   }
 
   //$scope.jornalClicado = function() {
@@ -257,6 +271,7 @@ function getColor(country) {
 
 //estilo dos limites entre países
 function style(feature) {
+  // feature = $scope.listaPaises;
   return {
     fillColor: getColor($scope.countries[feature.id]),
     weight: 2,
@@ -265,6 +280,11 @@ function style(feature) {
     dashArray: '3',
     fillOpacity: 0.7
   };
+  // if ($scope.listaPaises.nome) {
+  //   return {
+  //     fillColor: getColor
+  //   }
+  // }
 }
 
 // mudança do estilo quando mouse
@@ -277,6 +297,21 @@ function countryMouseover(feature, leafletEvent) {
   });
   layer.bringToFront();
   $scope.selectedCountry = feature;
+  // console.log($scope.selectedCountry.id);
+////////////////
+  if ($scope.selectedCountry.id) {
+
+    var bandeira = $scope.selectedCountry.id;
+    var vetorFinal = [];
+    for(i = 0; i < bandeira.length - 1; i++){
+      vetorFinal.push(bandeira[i]);
+    }
+    $scope.agoraVai = "";
+    $scope.agoraVai += vetorFinal[0];
+    $scope.agoraVai += vetorFinal[1];
+    // console.log($scope.agoraVai.toLowerCase());
+    bandeira.toLowerCase();
+  }
 }
 
 // Get the countries data from a JSON
@@ -300,13 +335,28 @@ $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-direct
     });
   });
 
+
+  $scope.logar = function() {
+    // console.log($scope.lgn);
+    $http.post('http://174.138.76.133:3000/login', $scope.lgn).then(function(resposta){
+      $scope.user = resposta;
+      // console.log(resposta);
+    })
+  };
+
+  $scope.cadastrar = function(){
+    // console.log($scope.cad);
+    $http.post('http://174.138.76.133:3000/usuario', $scope.cad).then(function(resposta){
+      // console.log(resposta);
+    })
+  };
+
   // $http.get("https://raw.githubusercontent.com/yaiba/flags.json/master/flags.json").then(function (response, status) {
   //   angular.extend($scope,{
   //     flags =
   //     }
   //   })
   // })
-
 
   // var paisSelect = function(){
   //
@@ -323,41 +373,3 @@ $http.get('https://raw.githubusercontent.com/tombatossals/angular-leaflet-direct
 
 });
 }]);
-
-.controller('LoginController', function($scope, $state, $http) {
-  $scope.data = {};
-
-  $scope.logar = function() {
-
-    $http.post('http://localhost:3000/login', $scope.data).then(function(resposta){
-      if(!resposta.data){
-        alert('Login invalido');
-        return;
-      }
-      Sessao.inicializar(resposta.data);
-      $state.go('app.home');
-    })
-  };
-  $scope.irCadastro = function() {
-    $state.go("cadastro");
-
-  }
-})
-
-.controller('CadastroController', function($scope, $state, $http) {
-  $scope.dados = {};
-
-  $scope.cadastrar = function(){
-    console.log($scope.dados);
-    $http.post('http://localhost:3000/usuario', $scope.dados).then(function(resposta){
-      console.log($scope.dados);
-      Sessao.inicializar(resposta.dados);
-      console.log($scope.dados);
-      console.log("Cadastro ok!")
-    })
-  }
-  $scope.cancelar = function() {
-    $state.go("app.home");
-
-  }
-})
