@@ -100,6 +100,38 @@ div.worldmap.country.f32 {
   margin-bottom: -30px;
 }
 
+.siganos {
+  border-top: 1px solid #eaedf2;
+  text-align: center;
+  margin-top: 25px;
+}
+
+.siganos p{
+  margin-top: 5px;
+}
+
+.facebook{
+  width: 40px;
+  height: 40px;
+}
+
+.facebook:hover {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.twitter{
+  width: 28px;
+  height: 28px;
+}
+
+.twitter:hover{
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
 .btns {
   margin-top: 35px;
 }
